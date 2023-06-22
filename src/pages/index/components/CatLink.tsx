@@ -1,5 +1,7 @@
 import { Image, Text, View } from '@tarojs/components';
 import style from './CatLink.module.css';
+import boyIcon from '../../../icon/boy.png';
+import girlIcon from '../../../icon/girl.png';
 
 interface Props {
   cat: Cat;
@@ -18,6 +20,10 @@ function CatLink({ cat }: Props) {
       )}
       <View className={style.right}>
         <Text className={style.name}>{cat.Name}</Text>
+        {cat.Gender == '公' && <Image src={boyIcon} className={style.gender} />}
+        {cat.Gender == '母' && (
+          <Image src={girlIcon} className={style.gender} />
+        )}
       </View>
     </View>
   );

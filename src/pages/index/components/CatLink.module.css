@@ -24,4 +24,10 @@
   border-bottom: 1px solid #ddd;
   display: flex;
   align-items: center;
+  gap: 15px;
+}
+
+.gender {
+  width: 35px;
+  height: 35px;
 }
