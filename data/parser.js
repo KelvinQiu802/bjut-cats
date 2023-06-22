@@ -16,7 +16,7 @@ Papa.parse(fileContent, {
   header: true,
   dynamicTyping: true,
   complete: (result) => {
-    data = result.data.filter((cat) => cat.姓名 != null);
+    data = result.data.filter((cat) => cat.Name != null);
     writeIntoFile(`${dirPath}/data/dataString.js`, data);
     console.log(data);
   },
