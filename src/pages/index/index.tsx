@@ -20,10 +20,12 @@ export default function Index() {
 
   useEffect(() => {
     setCats(() => {
-      const filtered = allCats.filter((cat) => cat.State == state);
+      let filtered = allCats.filter((cat) => cat.State == state);
+      filtered = filtered.filter(cat => cat.Campus == campus);
       return filtered;
     });
-  }, [state]);
+  }, [state, campus]);
+
 
   return (
     <View className='content'>
