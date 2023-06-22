@@ -1,12 +1,14 @@
+import { useState } from 'react';
 import { View, Text } from '@tarojs/components';
 import { useLoad } from '@tarojs/taro';
 import dataString from '../../../data/dataString';
-import { useState } from 'react';
 import style from './index.module.css';
 import CatLink from './components/CatLink';
+import StateBar from './components/StateBar';
 
 export default function Index() {
   const [cats, setCats] = useState<Cat[]>([]);
+  const [state, setState] = useState<State>('在校');
 
   useLoad(() => {
     console.log('Index Page loaded.');
@@ -15,6 +17,7 @@ export default function Index() {
 
   return (
     <View className='content'>
+      <StateBar state={state} setState={setState} />
       {cats.map((cat) => {
         return (
           <View key={cat.Name}>
