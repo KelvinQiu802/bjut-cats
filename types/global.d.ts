@@ -45,31 +45,12 @@ interface Cat {
   OrderWeight: number | null;
 }
 
-declare enum Campus {
-  '本部' = '本部',
-  '通州' = '通州',
-  '中篮' = '中篮',
-}
+type Campus = '本部' | '通州' | '中篮';
 
-declare enum Gender {
-  '公' = '公',
-  '母' = '母',
-  '未知' = '未知',
-}
+type Gender = '公' | '母' | '未知';
 
-declare enum Hair {
-  '长毛',
-  '短毛',
-}
+type Hair = '长毛' | '短毛';
 
-declare enum Neutered {
-  '已绝育',
-  '未绝育',
-}
+type Neutered = '已绝育' | '未绝育' | '未知';
 
-declare enum State {
-  '在校' = '在校',
-  '毕业' = '毕业',
-  '休学' = '休学',
-  '喵星' = '喵星',
-}
+type State = '在校' | '毕业' | '休学' | '喵星';
