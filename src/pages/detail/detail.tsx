@@ -1,6 +1,7 @@
 import { useLoad } from '@tarojs/taro';
 import { useState } from 'react';
 import { Image, Map, Text, View } from '@tarojs/components';
+import { removeDay } from '../../../utils/date';
 import style from './detail.module.css';
 
 const defaultImg =
@@ -57,13 +58,15 @@ function Detail() {
             {cat.Birthday && (
               <View className={style.item}>
                 <Text className={style.top}>出生日期</Text>
-                <Text className={style.bottom}>{cat.Birthday}</Text>
+                <Text className={style.bottom}>{removeDay(cat.Birthday)}</Text>
               </View>
             )}
             {cat.AdoptionDay && (
               <View className={style.item}>
                 <Text className={style.top}>送养日期</Text>
-                <Text className={style.bottom}>{cat.AdoptionDay}</Text>
+                <Text className={style.bottom}>
+                  {removeDay(cat.AdoptionDay)}
+                </Text>
               </View>
             )}
           </View>
