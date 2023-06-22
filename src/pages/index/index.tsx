@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { View, Text } from '@tarojs/components';
-import { useLoad } from '@tarojs/taro';
+import { useLoad, navigateTo } from '@tarojs/taro';
 import dataString from '../../../data/dataString';
 import style from './index.module.css';
 import CatLink from './components/CatLink';
@@ -26,6 +26,9 @@ export default function Index() {
     });
   }, [state, campus]);
 
+  const handleNavigate = (cat: Cat) => {
+    navigateTo({url: `../detail/detail?model=${encodeURIComponent(JSON.stringify(cat))}`})
+  }
 
   return (
     <View className='content'>
@@ -33,7 +36,7 @@ export default function Index() {
       <StateBar state={state} setState={setState} />
       {cats.map((cat) => {
         return (
-          <View key={cat.Name}>
+          <View key={cat.Name} onClick={() => {handleNavigate(cat)}}>
             <CatLink cat={cat} />
           </View>
         );

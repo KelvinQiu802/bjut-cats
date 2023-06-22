@@ -1,0 +1,43 @@
+.box {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 100%;
+}
+
+.img {
+  width: 100%;
+  height: calc(100vw - 150px);
+  border-radius: 10px;
+  margin-top: 10px;
+  margin-bottom: 15px;
+}
+
+.name {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  gap: 50px;
+  margin-top: 15px;
+}
+
+.row > .item:nth-child(2) {
+  align-items: end;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+}
+
+.top {
+  color: #aaa;
+}
+
+.map {
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
