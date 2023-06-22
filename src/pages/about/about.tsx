@@ -1,5 +1,6 @@
 import { View, Text } from '@tarojs/components';
 import { useLoad } from '@tarojs/taro';
+import style from './about.module.css';
 
 export default function Index() {
   useLoad(() => {
@@ -7,7 +8,7 @@ export default function Index() {
   });
 
   return (
-    <View className='index'>
+    <View className='content'>
       <Text>Hello world! About</Text>
     </View>
   );
