@@ -8,7 +8,6 @@
     "typescript": true,
     "css": "none"
   },
-  "type": "module",
   "scripts": {
     "data": "node ./data/parser.js",
     "build:weapp": "taro build --type weapp",

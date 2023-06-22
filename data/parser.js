@@ -1,8 +1,8 @@
 /** This is the data parser that converts a CSV file to JSON format */
 
-import Papa from 'papaparse';
-import fs from 'fs';
-import process from 'process';
+const Papa = require('papaparse');
+const fs = require('fs');
+const process = require('process');
 
 let data = [];
 
