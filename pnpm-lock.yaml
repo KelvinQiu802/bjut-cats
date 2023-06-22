@@ -46,6 +46,9 @@ dependencies:
   '@tarojs/taro':
     specifier: 3.6.6
     version: 3.6.6(@types/react@18.0.0)
+  papaparse:
+    specifier: ^5.4.1
+    version: 5.4.1
   react:
     specifier: ^18.0.0
     version: 18.0.0
@@ -9524,6 +9527,10 @@ packages:
       registry-url: 5.1.0
       semver: 6.3.0
     dev: true
+
+  /papaparse@5.4.1:
+    resolution: {integrity: sha512-HipMsgJkZu8br23pW15uvo6sib6wne/4woLZPlFf3rpDyMe9ywEXUsuD7+6K9PRkJlVT51j/sCOYDKGGS3ZJrw==}
+    dev: false
 
   /param-case@2.1.1:
     resolution: {integrity: sha512-eQE845L6ot89sk2N8liD8HAuH4ca6Vvr7VWAWwt7+kvvG5aBcPmmphQ68JsEG2qa9n1TykS2DLeMt363AAH8/w==}
