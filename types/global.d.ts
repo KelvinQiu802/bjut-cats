@@ -46,15 +46,15 @@ interface Cat {
 }
 
 declare enum Campus {
-  '本部',
-  '通州',
-  '中篮',
+  '本部' = '本部',
+  '通州' = '通州',
+  '中篮' = '中篮',
 }
 
 declare enum Gender {
-  '公',
-  '母',
-  '未知',
+  '公' = '公',
+  '母' = '母',
+  '未知' = '未知',
 }
 
 declare enum Hair {
@@ -68,8 +68,8 @@ declare enum Neutered {
 }
 
 declare enum State {
-  '在校',
-  '毕业',
-  '休学',
-  '喵星',
+  '在校' = '在校',
+  '毕业' = '毕业',
+  '休学' = '休学',
+  '喵星' = '喵星',
 }
