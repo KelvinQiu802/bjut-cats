@@ -1,10 +1,20 @@
 import { View, Text, Image } from '@tarojs/components'
-import { useLoad, showToast, setClipboardData } from '@tarojs/taro'
+import {
+  useLoad,
+  showToast,
+  setClipboardData,
+  previewImage,
+} from '@tarojs/taro'
 import { AtDivider } from 'taro-ui'
 import style from './about.module.css'
 import logo from '../../icon/logo.png'
 import qrcode from '../../icon/qrcode.png'
 import shopcode from '../../icon/shopqrcode.jpg'
+
+const qrCodes = [
+  'https://imgbed.codingkelvin.fun/uPic/qrcodeq34asdasd72rewfefw.png',
+  'https://imgbed.codingkelvin.fun/uPic/shopqrcode2342ierhwef.jpg',
+]
 
 export default function Index() {
   useLoad(() => {
@@ -19,6 +29,14 @@ export default function Index() {
           title: '复制成功',
         })
       },
+    })
+  }
+
+  const handleImagePreview = (index: number) => {
+    previewImage({
+      urls: qrCodes,
+      current: qrCodes[index],
+      showmenu: true,
     })
   }
 
@@ -61,12 +79,14 @@ export default function Index() {
             mode="widthFix"
             showMenuByLongpress
             className={style.qrcode}
+            onClick={() => handleImagePreview(0)}
           />
           <Image
             src={shopcode}
             mode="widthFix"
             showMenuByLongpress
             className={style.qrcode}
+            onClick={() => handleImagePreview(1)}
           />
         </View>
         <Text className={style.paragraph}>
