@@ -1,3 +1,15 @@
 .content {
   padding: 0 75px;
 }
+
+.underline {
+  text-decoration: underline;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.italic {
+  font-style: italic;
+}

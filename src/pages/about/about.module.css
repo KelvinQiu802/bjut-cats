@@ -1,0 +1,48 @@
+.centerContent {
+  text-align: center;
+}
+
+.title {
+  font-weight: bold;
+  font-size: 1.5em;
+  margin-top: 35px;
+}
+
+.logoBox {
+  width: 35vw;
+  margin: 0 auto;
+}
+
+.logo {
+  width: 100%;
+  margin-top: 35px;
+}
+
+.sectionTitle {
+  font-size: 1.1em;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.divider {
+  position: relative;
+  bottom: 30px;
+  margin-bottom: -50px;
+}
+
+.contentBox {
+  display: flex;
+  flex-direction: column;
+}
+
+.paragraph {
+  margin-bottom: 18px;
+  letter-spacing: 8px;
+  color: #333;
+  font-size: 0.9em;
+}
+
+.link {
+  color: #5ca5ef;
+  text-decoration: underline;
+}
