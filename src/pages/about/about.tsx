@@ -7,14 +7,12 @@ import {
 } from '@tarojs/taro'
 import { AtDivider } from 'taro-ui'
 import style from './about.module.css'
-import logo from '../../icon/logo.png'
-import qrcode from '../../icon/qrcode.png'
-import shopcode from '../../icon/shopqrcode.jpg'
 
 const qrCodes = [
   'https://imgbed.codingkelvin.fun/uPic/qrcodeq34asdasd72rewfefw.png',
   'https://imgbed.codingkelvin.fun/uPic/shopqrcode2342ierhwef.jpg',
 ]
+const logo = 'https://imgbed.codingkelvin.fun/uPic/logo_animalawatchasd.png'
 
 export default function Index() {
   useLoad(() => {
@@ -75,14 +73,14 @@ export default function Index() {
         <Text className={style.sectionTitle}>找到我们</Text>
         <View className={style.codeBox}>
           <Image
-            src={qrcode}
+            src={qrCodes[0]}
             mode="widthFix"
             showMenuByLongpress
             className={style.qrcode}
             onClick={() => handleImagePreview(0)}
           />
           <Image
-            src={shopcode}
+            src={qrCodes[1]}
             mode="widthFix"
             showMenuByLongpress
             className={style.qrcode}
