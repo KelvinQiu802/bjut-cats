@@ -46,3 +46,14 @@
   color: #5ca5ef;
   text-decoration: underline;
 }
+
+.codeBox {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-bottom: 5px;
+}
+
+.qrcode {
+  width: 35vw;
+}

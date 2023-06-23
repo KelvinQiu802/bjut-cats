@@ -3,6 +3,8 @@ import { useLoad, showToast, setClipboardData } from '@tarojs/taro'
 import { AtDivider } from 'taro-ui'
 import style from './about.module.css'
 import logo from '../../icon/logo.png'
+import qrcode from '../../icon/qrcode.png'
+import shopcode from '../../icon/shopqrcode.jpg'
 
 export default function Index() {
   useLoad(() => {
@@ -53,6 +55,28 @@ export default function Index() {
           ，控制校园流浪猫数量，并通过科普宣传帮助同学们与校园流浪动物和谐共处,，共同营造生态友好环境美丽的工大校园。
         </Text>
         <Text className={style.sectionTitle}>找到我们</Text>
+        <View className={style.codeBox}>
+          <Image
+            src={qrcode}
+            mode="widthFix"
+            showMenuByLongpress
+            className={style.qrcode}
+          />
+          <Image
+            src={shopcode}
+            mode="widthFix"
+            showMenuByLongpress
+            className={style.qrcode}
+          />
+        </View>
+        <Text className={style.paragraph}>
+          长按上方二维码关注社团
+          <Text className="bold">公众号</Text>和
+          <Text className="bold">微店</Text>
+          ，社团动向和猫猫周边
+          <Text className="underline">义卖活动</Text>
+          都会在上面发布噢～
+        </Text>
         <Text className={style.sectionTitle}>项目开源</Text>
         <Text className={style.paragraph}>
           本项目使用
