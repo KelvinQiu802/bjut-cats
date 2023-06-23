@@ -4,26 +4,49 @@ const Papa = require('papaparse')
 const fs = require('fs')
 const process = require('process')
 
-let data = []
-
 // Read File
 const dirPath = process.cwd()
-const fileName = 'BJUT-CATS-cats.csv'
-const fileContent = fs.readFileSync(`${dirPath}/data/${fileName}`, 'utf-8')
+const fileNames = [
+  'BJUT-CATS-benbu.csv',
+  'BJUT-CATS-tongzhou.csv',
+  'BJUT-CATS-zhonglan.csv',
+]
 
-// Parse File
-Papa.parse(fileContent, {
-  header: true,
-  dynamicTyping: true,
-  complete: (result) => {
-    data = result.data.filter((cat) => cat.Name != null)
-    writeIntoFile(`${dirPath}/data/dataString.js`, data)
-    console.log(data)
-  },
+parse().then((data) => {
+  console.log(data)
+  writeIntoFile(`${dirPath}/data/dataString.js`, data)
 })
 
-// Write File
+// Parse all file
+async function parse() {
+  let data = []
+  for (let i = 0; i < fileNames.length; i++) {
+    const fileName = fileNames[i]
+    const fileContent = fs.readFileSync(`${dirPath}/data/${fileName}`, 'utf-8')
+    const result = await toJson(fileContent)
+    const filtered = result.filter((cat) => cat.Name != null)
+    data = [...data, ...filtered]
+  }
+  return data
+}
 
+// Parse .csv to JSON
+function toJson(file) {
+  return new Promise((resolve, reject) => {
+    Papa.parse(file, {
+      header: true,
+      dynamicTyping: true,
+      complete(results) {
+        resolve(results.data)
+      },
+      error(err) {
+        reject(err)
+      },
+    })
+  })
+}
+
+// Write File
 function writeIntoFile(filePath, jsonObj) {
   const content = JSON.stringify(jsonObj)
   fs.writeFileSync(filePath, `export default '${content}'`, 'utf-8')
