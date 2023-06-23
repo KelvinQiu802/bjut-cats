@@ -30,7 +30,9 @@ $ pnpm run build:weapp
 
 ## Contact Us
 
-QR Code Place Holder
+<p align="center">
+<img src="https://imgbed.codingkelvin.fun/uPic/qrcodeq34asdasd72rewfefw.png" width=200px/>
+</p>
 
 ## Thanks
 
