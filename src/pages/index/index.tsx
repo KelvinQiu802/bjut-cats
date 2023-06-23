@@ -7,6 +7,7 @@ import CatLink from './components/CatLink'
 import StateBar from './components/StateBar'
 import CampusForm from './components/CampusForm'
 import Search from './components/Search'
+import { AtDivider } from 'taro-ui'
 
 export default function Index() {
   const [cats, setCats] = useState<Cat[]>([])
@@ -59,6 +60,7 @@ export default function Index() {
           </View>
         )
       })}
+      <AtDivider content="没有更多猫猫啦" fontColor="#bbb" />
     </View>
   )
 }
