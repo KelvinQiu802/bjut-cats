@@ -25,7 +25,9 @@ export default function Index() {
     setCats(() => {
       let filtered = allCats.filter((cat) => cat.State == state)
       filtered = filtered.filter((cat) => cat.Campus == campus)
-      filtered = filtered.filter((cat) => cat.Name.includes(searchWord))
+      filtered = filtered.filter((cat) =>
+        cat.Name.toLowerCase().includes(searchWord.toLowerCase())
+      )
       let orderByWeight = filtered.sort((a, b) => {
         const weightA = a.OrderWeight ? a.OrderWeight : 0
         const weightB = b.OrderWeight ? b.OrderWeight : 0
