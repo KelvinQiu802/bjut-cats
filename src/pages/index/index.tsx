@@ -22,7 +22,12 @@ export default function Index() {
     setCats(() => {
       let filtered = allCats.filter((cat) => cat.State == state);
       filtered = filtered.filter(cat => cat.Campus == campus);
-      return filtered;
+      let orderByWeight = filtered.sort((a, b) => {
+        const weightA = a.OrderWeight ? a.OrderWeight : 0;
+        const weightB = b.OrderWeight ? b.OrderWeight : 0;
+        return weightB - weightA;
+      })
+      return orderByWeight;
     });
   }, [state, campus]);
 
