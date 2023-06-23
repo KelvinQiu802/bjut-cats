@@ -1,7 +1,7 @@
 {
   "miniprogramRoot": "dist/",
   "projectname": "bjut-cats",
-  "description": "Mini program for all BJUT&#39;s cats.",
+  "description": "北京工业大学BJUT小动物观赏协会猫咪图鉴",
   "appid": "wxa932a8008de3fd40",
   "setting": {
     "urlCheck": true,
