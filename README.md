@@ -9,7 +9,7 @@
 ### Data Collection
 
 1. The data needs to be inputted into a table.
-   1. The basic logic is that the program reads the data from the table. 
+   1. The basic logic is that the program reads the data from the table.
    2. This project uses [Tencent Doc](https://docs.qq.com), and a read-only example can be found at [BJUT Cats](https://docs.qq.com/sheet/DR0ZTREtQTm9Gb29O?tab=BB08J2).
 2. Once the data is inputted into the table, it can be exported as a `.csv` file.
 3. Copy the exported `.csv` file into the `data` folder.
@@ -41,4 +41,3 @@ The conceptualization of this project was stimulated by the innovative work of t
 ## License
 
 > MIT
-

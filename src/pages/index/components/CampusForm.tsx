@@ -1,13 +1,13 @@
-import { Form, Image, Picker, Text, View } from '@tarojs/components'
-import campusIcon from '../../../icon/campus.png'
-import style from './CampusForm.module.css'
+import { Form, Image, Picker, Text, View } from '@tarojs/components';
+import campusIcon from '../../../icon/campus.png';
+import style from './CampusForm.module.css';
 
 interface Props {
-  campus: Campus
-  setCampus: React.Dispatch<React.SetStateAction<Campus>>
+  campus: Campus;
+  setCampus: React.Dispatch<React.SetStateAction<Campus>>;
 }
 
-const options: Campus[] = ['本部', '通州', '中篮']
+const options: Campus[] = ['本部', '通州', '中篮'];
 
 function CampusForm({ campus, setCampus }: Props) {
   return (
@@ -25,7 +25,7 @@ function CampusForm({ campus, setCampus }: Props) {
         </Picker>
       </Form>
     </View>
-  )
+  );
 }
 
-export default CampusForm
+export default CampusForm;

@@ -1,21 +1,21 @@
-import { useLoad } from '@tarojs/taro'
-import { AtModal, AtModalHeader, AtModalContent, AtModalAction } from 'taro-ui'
-import { useState } from 'react'
-import { Image, Map, Text, View } from '@tarojs/components'
-import { removeDay } from '../../../utils/date'
-import style from './detail.module.css'
-import questionIcon from '../../icon/question.png'
+import { useLoad } from '@tarojs/taro';
+import { AtModal, AtModalHeader, AtModalContent, AtModalAction } from 'taro-ui';
+import { useState } from 'react';
+import { Image, Map, Text, View } from '@tarojs/components';
+import { removeDay } from '../../../utils/date';
+import style from './detail.module.css';
+import questionIcon from '../../icon/question.png';
 
 const defaultImg =
-  'https://imgbed.codingkelvin.fun/uPic/placeholder345734852.jpg'
+  'https://imgbed.codingkelvin.fun/uPic/placeholder345734852.jpg';
 
 function Detail() {
-  const [cat, setCat] = useState<Cat>({} as Cat)
-  const [showStateMsg, setShowStateMsg] = useState(false)
+  const [cat, setCat] = useState<Cat>({} as Cat);
+  const [showStateMsg, setShowStateMsg] = useState(false);
 
   useLoad((options) => {
-    setCat(JSON.parse(decodeURIComponent(options.model)))
-  })
+    setCat(JSON.parse(decodeURIComponent(options.model)));
+  });
 
   return (
     <View className="content">
@@ -119,7 +119,7 @@ function Detail() {
         </View>
       </View>
     </View>
-  )
+  );
 }
 
-export default Detail
+export default Detail;

@@ -1,23 +1,23 @@
-import { View, Text, Image } from '@tarojs/components'
+import { View, Text, Image } from '@tarojs/components';
 import {
   useLoad,
   showToast,
   setClipboardData,
   previewImage,
-} from '@tarojs/taro'
-import { AtDivider } from 'taro-ui'
-import style from './about.module.css'
+} from '@tarojs/taro';
+import { AtDivider } from 'taro-ui';
+import style from './about.module.css';
 
 const qrCodes = [
   'https://imgbed.codingkelvin.fun/uPic/qrcodeq34asdasd72rewfefw.png',
   'https://imgbed.codingkelvin.fun/uPic/shopqrcode2342ierhwef.jpg',
-]
-const logo = 'https://imgbed.codingkelvin.fun/uPic/logo_animalawatchasd.png'
+];
+const logo = 'https://imgbed.codingkelvin.fun/uPic/logo_animalawatchasd.png';
 
 export default function Index() {
   useLoad(() => {
-    console.log('Page loaded.')
-  })
+    console.log('Page loaded.');
+  });
 
   const copyGithubLink = () => {
     setClipboardData({
@@ -25,18 +25,18 @@ export default function Index() {
       success() {
         showToast({
           title: '复制成功',
-        })
+        });
       },
-    })
-  }
+    });
+  };
 
   const handleImagePreview = (index: number) => {
     previewImage({
       urls: qrCodes,
       current: qrCodes[index],
       showmenu: true,
-    })
-  }
+    });
+  };
 
   return (
     <View className="content">
@@ -113,5 +113,5 @@ export default function Index() {
       </View>
       <AtDivider fontColor="#ccc">到底啦</AtDivider>
     </View>
-  )
+  );
 }

@@ -1,14 +1,14 @@
-import { Image, Text, View } from '@tarojs/components'
-import style from './CatLink.module.css'
-import boyIcon from '../../../icon/boy.png'
-import girlIcon from '../../../icon/girl.png'
+import { Image, Text, View } from '@tarojs/components';
+import style from './CatLink.module.css';
+import boyIcon from '../../../icon/boy.png';
+import girlIcon from '../../../icon/girl.png';
 
 interface Props {
-  cat: Cat
+  cat: Cat;
 }
 
 const defaultImg =
-  'https://imgbed.codingkelvin.fun/uPic/placeholder345734852.jpg'
+  'https://imgbed.codingkelvin.fun/uPic/placeholder345734852.jpg';
 
 function CatLink({ cat }: Props) {
   return (
@@ -26,7 +26,7 @@ function CatLink({ cat }: Props) {
         )}
       </View>
     </View>
-  )
+  );
 }
 
-export default CatLink
+export default CatLink;

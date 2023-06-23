@@ -1,9 +1,9 @@
-import { View } from '@tarojs/components'
-import style from './StateBar.module.css'
+import { View } from '@tarojs/components';
+import style from './StateBar.module.css';
 
 interface Props {
-  state: State
-  setState: React.Dispatch<React.SetStateAction<State>>
+  state: State;
+  setState: React.Dispatch<React.SetStateAction<State>>;
 }
 
 function StateBar({ state, setState }: Props) {
@@ -34,7 +34,7 @@ function StateBar({ state, setState }: Props) {
         喵星
       </View>
     </View>
-  )
+  );
 }
 
-export default StateBar
+export default StateBar;
