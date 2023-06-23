@@ -1,21 +1,21 @@
-import { useLoad } from '@tarojs/taro';
-import { useState } from 'react';
-import { Image, Map, Text, View } from '@tarojs/components';
-import { removeDay } from '../../../utils/date';
-import style from './detail.module.css';
+import { useLoad } from '@tarojs/taro'
+import { useState } from 'react'
+import { Image, Map, Text, View } from '@tarojs/components'
+import { removeDay } from '../../../utils/date'
+import style from './detail.module.css'
 
 const defaultImg =
-  'https://imgbed.codingkelvin.fun/uPic/placeholder345734852.jpg';
+  'https://imgbed.codingkelvin.fun/uPic/placeholder345734852.jpg'
 
 function Detail() {
-  const [cat, setCat] = useState<Cat>({} as Cat);
+  const [cat, setCat] = useState<Cat>({} as Cat)
 
   useLoad((options) => {
-    setCat(JSON.parse(decodeURIComponent(options.model)));
-  });
+    setCat(JSON.parse(decodeURIComponent(options.model)))
+  })
 
   return (
-    <View className='content'>
+    <View className="content">
       <View className={style.box}>
         {cat.Image ? (
           <Image className={style.img} src={cat.Image} />
@@ -103,7 +103,7 @@ function Detail() {
         </View>
       </View>
     </View>
-  );
+  )
 }
 
-export default Detail;
+export default Detail
