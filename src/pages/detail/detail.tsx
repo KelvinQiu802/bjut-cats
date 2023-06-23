@@ -1,7 +1,7 @@
-import { useLoad, showModal } from '@tarojs/taro'
+import { useLoad } from '@tarojs/taro'
 import { AtModal, AtModalHeader, AtModalContent, AtModalAction } from 'taro-ui'
 import { useState } from 'react'
-import { Button, Image, Map, Text, View } from '@tarojs/components'
+import { Image, Map, Text, View } from '@tarojs/components'
 import { removeDay } from '../../../utils/date'
 import style from './detail.module.css'
 import questionIcon from '../../icon/question.png'
@@ -22,7 +22,9 @@ function Detail() {
       <AtModal
         isOpened={showStateMsg}
         title="在校状态说明"
-        confirmText="知道啦!"
+        confirmText="知道啦"
+        onClose={() => setShowStateMsg(false)}
+        onCancel={() => setShowStateMsg(false)}
         onConfirm={() => setShowStateMsg(false)}
         content={
           '• 在校: 健康生活在学校中\n• 毕业: 已经找到家啦\n• 休学: 长时间失踪\n• 喵星: 猫猫回到了自己的世界'
@@ -62,11 +64,8 @@ function Detail() {
               <Text className={style.top}>校区</Text>
               <Text className={style.bottom}>{cat.Campus}</Text>
             </View>
-            <View className={style.item}>
-              <View
-                className={style.topWithIcon}
-                onClick={() => setShowStateMsg(true)}
-              >
+            <View className={style.item} onClick={() => setShowStateMsg(true)}>
+              <View className={style.topWithIcon}>
                 <Text className={style.top}>状态</Text>
                 <Image src={questionIcon} className={style.question} />
               </View>
@@ -96,9 +95,10 @@ function Detail() {
             </View>
           </View>
           <View className={style.row}>
-            <View className={style.item}>
-              <Text className={style.top}>位置</Text>
-              {cat.Longitude && cat.Latitude && (
+            {cat.Longitude && cat.Latitude && cat.Position && (
+              <View className={style.item}>
+                <Text className={style.top}>位置</Text>
+                <Text className={style.bottom}>{cat.Position}</Text>
                 <Map
                   longitude={cat.Longitude}
                   latitude={cat.Latitude}
@@ -113,11 +113,8 @@ function Detail() {
                   ]}
                   className={style.map}
                 />
-              )}
-              {cat.Position && (
-                <Text className={style.bottom}>{cat.Position}</Text>
-              )}
-            </View>
+              </View>
+            )}
           </View>
         </View>
       </View>
