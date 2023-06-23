@@ -6,11 +6,13 @@ import style from './index.module.css'
 import CatLink from './components/CatLink'
 import StateBar from './components/StateBar'
 import CampusForm from './components/CampusForm'
+import Search from './components/Search'
 
 export default function Index() {
   const [cats, setCats] = useState<Cat[]>([])
   const [state, setState] = useState<State>('在校')
   const [campus, setCampus] = useState<Campus>('本部')
+  const [searchWord, setSearchWord] = useState('')
   const allCats: Cat[] = useMemo(() => JSON.parse(dataString), [dataString])
 
   useLoad(() => {
@@ -22,6 +24,7 @@ export default function Index() {
     setCats(() => {
       let filtered = allCats.filter((cat) => cat.State == state)
       filtered = filtered.filter((cat) => cat.Campus == campus)
+      filtered = filtered.filter((cat) => cat.Name.includes(searchWord))
       let orderByWeight = filtered.sort((a, b) => {
         const weightA = a.OrderWeight ? a.OrderWeight : 0
         const weightB = b.OrderWeight ? b.OrderWeight : 0
@@ -29,7 +32,7 @@ export default function Index() {
       })
       return orderByWeight
     })
-  }, [state, campus])
+  }, [state, campus, searchWord])
 
   const handleNavigate = (cat: Cat) => {
     navigateTo({
@@ -39,8 +42,9 @@ export default function Index() {
 
   return (
     <View className="content">
-      <View>
+      <View className={style.form}>
         <CampusForm campus={campus} setCampus={setCampus} />
+        <Search searchWord={searchWord} setSearchWord={setSearchWord} />
       </View>
       <StateBar state={state} setState={setState} />
       {cats.map((cat) => {
