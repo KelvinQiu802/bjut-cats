@@ -42,3 +42,16 @@
   margin-bottom: 8px;
   width: calc(100vw - 150px);
 }
+
+.topWithIcon {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.question {
+  width: 35px;
+  height: 35px;
+  position: relative;
+  bottom: 1px;
+}

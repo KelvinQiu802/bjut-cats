@@ -1,14 +1,17 @@
-import { useLoad } from '@tarojs/taro'
+import { useLoad, showModal } from '@tarojs/taro'
+import { AtModal, AtModalHeader, AtModalContent, AtModalAction } from 'taro-ui'
 import { useState } from 'react'
-import { Image, Map, Text, View } from '@tarojs/components'
+import { Button, Image, Map, Text, View } from '@tarojs/components'
 import { removeDay } from '../../../utils/date'
 import style from './detail.module.css'
+import questionIcon from '../../icon/question.png'
 
 const defaultImg =
   'https://imgbed.codingkelvin.fun/uPic/placeholder345734852.jpg'
 
 function Detail() {
   const [cat, setCat] = useState<Cat>({} as Cat)
+  const [showStateMsg, setShowStateMsg] = useState(false)
 
   useLoad((options) => {
     setCat(JSON.parse(decodeURIComponent(options.model)))
@@ -16,6 +19,16 @@ function Detail() {
 
   return (
     <View className="content">
+      <AtModal
+        isOpened={showStateMsg}
+        title="在校状态说明"
+        confirmText="知道啦!"
+        onConfirm={() => setShowStateMsg(false)}
+        content={
+          '• 在校: 健康生活在学校中\n• 毕业: 已经找到家啦\n• 休学: 长时间失踪\n• 喵星: 猫猫回到了自己的世界'
+        }
+      />
+
       <View className={style.box}>
         {cat.Image ? (
           <Image className={style.img} src={cat.Image} />
@@ -50,7 +63,13 @@ function Detail() {
               <Text className={style.bottom}>{cat.Campus}</Text>
             </View>
             <View className={style.item}>
-              <Text className={style.top}>状态</Text>
+              <View
+                className={style.topWithIcon}
+                onClick={() => setShowStateMsg(true)}
+              >
+                <Text className={style.top}>状态</Text>
+                <Image src={questionIcon} className={style.question} />
+              </View>
               <Text className={style.bottom}>{cat.State}</Text>
             </View>
           </View>
