@@ -50,9 +50,9 @@ export default function Index() {
         <Search searchWord={searchWord} setSearchWord={setSearchWord} />
       </View>
       <AtTabs
-        animated={true}
+        animated={false}
         current={state}
-        swipeable
+        swipeable={true}
         tabList={[
           { title: '在校' },
           { title: '毕业' },
