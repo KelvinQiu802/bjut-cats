@@ -1,3 +1,3 @@
 export default definePageConfig({
-  navigationBarTitleText: 'BJUT猫咪图鉴',
+  navigationBarTitleText: 'BJUT猫屋',
 });
