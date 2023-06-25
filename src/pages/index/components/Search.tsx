@@ -1,14 +1,10 @@
+import { navigateTo } from '@tarojs/taro';
+import { useRef } from 'react';
 import { Form, Image, Input, View } from '@tarojs/components';
 import style from './Search.module.css';
 import searchIcon from '../../../icon/search.png';
-import { useRef } from 'react';
 
-interface Props {
-  searchWord: string;
-  setSearchWord: React.Dispatch<React.SetStateAction<string>>;
-}
-
-function Search({ setSearchWord, searchWord }: Props) {
+function Search() {
   const inputRef = useRef<HTMLInputElement>();
 
   return (
@@ -24,10 +20,10 @@ function Search({ setSearchWord, searchWord }: Props) {
         <Input
           placeholder="搜索猫猫"
           className={style.input}
-          value={searchWord}
-          cursor={searchWord.length}
           onConfirm={(e) => {
-            setSearchWord(e.detail.value);
+            navigateTo({
+              url: `../result/result?search=${e.detail.value}`,
+            });
           }}
           ref={inputRef}
         />

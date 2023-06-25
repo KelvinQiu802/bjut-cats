@@ -14,7 +14,6 @@ export default function Index() {
   // 0: 在校 1:毕业 2:休学 3:喵星
   const [state, setState] = useState(0);
   const [campus, setCampus] = useState<Campus>('本部');
-  const [searchWord, setSearchWord] = useState('');
   const allCats: Cat[] = useMemo(() => JSON.parse(dataString), [dataString]);
 
   useLoad(() => {
@@ -25,9 +24,6 @@ export default function Index() {
   useEffect(() => {
     setCats(() => {
       let filtered = allCats.filter((cat) => cat.Campus == campus);
-      filtered = filtered.filter((cat) =>
-        cat.Name.toLowerCase().includes(searchWord.toLowerCase())
-      );
       let orderByWeight = filtered.sort((a, b) => {
         const weightA = a.OrderWeight ? a.OrderWeight : 0;
         const weightB = b.OrderWeight ? b.OrderWeight : 0;
@@ -35,7 +31,7 @@ export default function Index() {
       });
       return orderByWeight;
     });
-  }, [campus, searchWord]);
+  }, [campus]);
 
   const handleNavigate = (cat: Cat) => {
     navigateTo({
@@ -47,7 +43,7 @@ export default function Index() {
     <View className="content">
       <View className={style.form}>
         <CampusForm campus={campus} setCampus={setCampus} />
-        <Search searchWord={searchWord} setSearchWord={setSearchWord} />
+        <Search />
       </View>
       <AtTabs
         animated={false}
