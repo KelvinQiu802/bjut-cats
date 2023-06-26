@@ -18,7 +18,7 @@ export default function Index() {
   const API_HOST =
     process.env.NODE_ENV == 'development'
       ? 'http://localhost:7070'
-      : 'https://codingkelvin.fun';
+      : 'https://animalwatch.codingkelvin.fun';
 
   useLoad(() => {
     console.log('Index Page loaded.');
@@ -29,9 +29,9 @@ export default function Index() {
         setAllCats(res.data);
         setGlobal('allCats', res.data);
       },
-      fail: () => {
+      fail: (res) => {
         showToast({
-          title: '数据抓取失败',
+          title: res.errMsg,
           icon: 'error',
         });
       },
