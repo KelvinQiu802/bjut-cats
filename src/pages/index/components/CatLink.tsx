@@ -13,15 +13,15 @@ const defaultImg =
 function CatLink({ cat }: Props) {
   return (
     <View className={style.row}>
-      {cat.Avatar ? (
-        <Image src={cat.Avatar} className={style.img} />
+      {cat.avatar ? (
+        <Image src={cat.avatar} className={style.img} />
       ) : (
         <Image src={defaultImg} className={style.defaultImg} />
       )}
       <View className={style.right}>
-        <Text className={style.name}>{cat.Name}</Text>
-        {cat.Gender == '公' && <Image src={boyIcon} className={style.gender} />}
-        {cat.Gender == '母' && (
+        <Text className={style.name}>{cat.name}</Text>
+        {cat.gender == '公' && <Image src={boyIcon} className={style.gender} />}
+        {cat.gender == '母' && (
           <Image src={girlIcon} className={style.gender} />
         )}
       </View>

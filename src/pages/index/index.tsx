@@ -23,10 +23,10 @@ export default function Index() {
 
   useEffect(() => {
     setCats(() => {
-      let filtered = allCats.filter((cat) => cat.Campus == campus);
+      let filtered = allCats.filter((cat) => cat.campus == campus);
       let orderByWeight = filtered.sort((a, b) => {
-        const weightA = a.OrderWeight ? a.OrderWeight : 0;
-        const weightB = b.OrderWeight ? b.OrderWeight : 0;
+        const weightA = a.orderWeight ? a.orderWeight : 0;
+        const weightB = b.orderWeight ? b.orderWeight : 0;
         return weightB - weightA;
       });
       return orderByWeight;
@@ -63,11 +63,11 @@ export default function Index() {
         <AtTabsPane current={state} index={0}>
           <View className={style.catList}>
             {cats
-              .filter((cat) => cat.State == '在校')
+              .filter((cat) => cat.state == '在校')
               .map((cat) => {
                 return (
                   <View
-                    key={cat.Name}
+                    key={cat.name}
                     onClick={() => {
                       handleNavigate(cat);
                     }}
@@ -81,11 +81,11 @@ export default function Index() {
         <AtTabsPane current={state} index={1}>
           <View className={style.catList}>
             {cats
-              .filter((cat) => cat.State == '毕业')
+              .filter((cat) => cat.state == '毕业')
               .map((cat) => {
                 return (
                   <View
-                    key={cat.Name}
+                    key={cat.name}
                     onClick={() => {
                       handleNavigate(cat);
                     }}
@@ -99,11 +99,11 @@ export default function Index() {
         <AtTabsPane current={state} index={2}>
           <View className={style.catList}>
             {cats
-              .filter((cat) => cat.State == '休学')
+              .filter((cat) => cat.state == '休学')
               .map((cat) => {
                 return (
                   <View
-                    key={cat.Name}
+                    key={cat.name}
                     onClick={() => {
                       handleNavigate(cat);
                     }}
@@ -117,11 +117,11 @@ export default function Index() {
         <AtTabsPane current={state} index={3}>
           <View className={style.catList}>
             {cats
-              .filter((cat) => cat.State == '喵星')
+              .filter((cat) => cat.state == '喵星')
               .map((cat) => {
                 return (
                   <View
-                    key={cat.Name}
+                    key={cat.name}
                     onClick={() => {
                       handleNavigate(cat);
                     }}

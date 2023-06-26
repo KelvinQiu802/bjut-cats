@@ -24,7 +24,7 @@ async function parse() {
     const fileName = fileNames[i];
     const fileContent = fs.readFileSync(`${dirPath}/data/${fileName}`, 'utf-8');
     const result = await toJson(fileContent);
-    const filtered = result.filter((cat) => cat.Name != null);
+    const filtered = result.filter((cat) => cat.name != null);
     data = [...data, ...filtered];
   }
   return data;

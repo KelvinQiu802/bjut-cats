@@ -27,22 +27,22 @@ declare namespace NodeJS {
 }
 
 interface Cat {
-  Name: string;
-  Campus: Campus;
-  Avatar: string | null;
-  Image: string | null;
-  Gender: Gender;
-  Color: string;
-  Hair: Hair;
-  Neutered: Neutered;
-  State: State;
-  Description: string;
-  Birthday: string | null;
-  AdoptionDay: string | null;
-  Position: string | null;
-  Longitude: number | null;
-  Latitude: number | null;
-  OrderWeight: number | null;
+  name: string;
+  campus: Campus;
+  avatar: string | null;
+  image: string | null;
+  gender: Gender;
+  color: string;
+  hair: Hair;
+  neutered: Neutered;
+  state: State;
+  description: string;
+  birthday: string | null;
+  adoptionDay: string | null;
+  position: string | null;
+  longitude: number | null;
+  latitude: number | null;
+  orderWeight: number | null;
 }
 
 type Campus = '本部' | '通州' | '中篮';

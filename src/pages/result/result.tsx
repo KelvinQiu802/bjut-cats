@@ -20,7 +20,7 @@ function Result() {
   useEffect(() => {
     setResult(
       cats.filter((cat) =>
-        cat.Name.toLowerCase().includes(searchValue.toLowerCase())
+        cat.name.toLowerCase().includes(searchValue.toLowerCase())
       )
     );
   }, [searchValue]);
@@ -37,7 +37,7 @@ function Result() {
         {result.map((cat) => {
           return (
             <View
-              key={cat.Name}
+              key={cat.name}
               onClick={() => {
                 handleNavigate(cat);
               }}
