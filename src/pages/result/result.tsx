@@ -1,25 +1,24 @@
 import { View } from '@tarojs/components';
 import { useLoad, navigateTo } from '@tarojs/taro';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { AtDivider } from 'taro-ui';
-import dataString from '../../../data/dataString';
 import style from './result.module.css';
 import CatLink from '../index/components/CatLink';
+import { getGlobal } from '../../../utils/globalData';
 
 function Result() {
   // 目前搜索功能会在所有猫中搜索，不会按照校区进行搜索
   const [searchValue, setSearchValue] = useState('');
   const [result, setResult] = useState<Cat[]>([]);
 
-  const cats: Cat[] = useMemo(() => JSON.parse(dataString), []);
-
   useLoad((option) => {
     setSearchValue(option.search);
   });
 
   useEffect(() => {
+    const allCats: Cat[] = getGlobal('allCats');
     setResult(
-      cats.filter((cat) =>
+      allCats.filter((cat) =>
         cat.name.toLowerCase().includes(searchValue.toLowerCase())
       )
     );

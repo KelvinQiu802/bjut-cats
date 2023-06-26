@@ -109,6 +109,9 @@ function Detail() {
                       longitude: cat.longitude,
                       latitude: cat.latitude,
                       iconPath: '',
+                      id: 0,
+                      width: 20,
+                      height: 30,
                     },
                   ]}
                   className={style.map}

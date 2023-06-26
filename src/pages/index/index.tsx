@@ -1,26 +1,41 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
+import { AtTabs, AtTabsPane, AtDivider } from 'taro-ui';
 import { View } from '@tarojs/components';
-import { useLoad, navigateTo } from '@tarojs/taro';
-import dataString from '../../../data/dataString';
+import { useLoad, navigateTo, request, showToast } from '@tarojs/taro';
 import style from './index.module.css';
 import CatLink from './components/CatLink';
-import { AtTabs, AtTabsPane } from 'taro-ui';
 import CampusForm from './components/CampusForm';
 import Search from './components/Search';
-import { AtDivider } from 'taro-ui';
+import { setGlobal } from '../../../utils/globalData';
 
 export default function Index() {
   const [cats, setCats] = useState<Cat[]>([]);
   // 0: 在校 1:毕业 2:休学 3:喵星
   const [state, setState] = useState(0);
   const [campus, setCampus] = useState<Campus>('本部');
-  const allCats: Cat[] = useMemo(() => JSON.parse(dataString), [dataString]);
+  const [allCats, setAllCats] = useState<Cat[]>([]);
 
-  console.log(cats);
+  const API_HOST =
+    process.env.NODE_ENV == 'development'
+      ? 'http://localhost:7070'
+      : 'https://codingkelvin.fun';
 
   useLoad(() => {
     console.log('Index Page loaded.');
-    setCats(JSON.parse(dataString));
+    request({
+      url: `${API_HOST}/api/cats`,
+      method: 'GET',
+      success: (res) => {
+        setAllCats(res.data);
+        setGlobal('allCats', res.data);
+      },
+      fail: () => {
+        showToast({
+          title: '数据抓取失败',
+          icon: 'error',
+        });
+      },
+    });
   });
 
   useEffect(() => {
@@ -33,7 +48,7 @@ export default function Index() {
       });
       return orderByWeight;
     });
-  }, [campus]);
+  }, [campus, allCats]);
 
   const handleNavigate = (cat: Cat) => {
     navigateTo({
@@ -50,7 +65,7 @@ export default function Index() {
       <AtTabs
         animated={false}
         current={state}
-        swipeable={true}
+        swipeable
         tabList={[
           { title: '在校' },
           { title: '毕业' },
