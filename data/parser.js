@@ -4,6 +4,8 @@ const Papa = require('papaparse');
 const fs = require('fs');
 const process = require('process');
 
+const API_HOST = 'http://localhost:7070';
+
 // Read File
 const dirPath = process.cwd();
 const fileNames = [
@@ -14,7 +16,7 @@ const fileNames = [
 
 parse().then((data) => {
   console.log(data);
-  writeIntoFile(`${dirPath}/data/dataString.js`, data);
+  writeIntoDB(data);
 });
 
 // Parse all file
@@ -46,8 +48,18 @@ function toJson(file) {
   });
 }
 
-// Write File
-function writeIntoFile(filePath, jsonObj) {
-  const content = JSON.stringify(jsonObj);
-  fs.writeFileSync(filePath, `export default '${content}'`, 'utf-8');
+// Write Data into DB
+async function writeIntoDB(cats) {
+  for (let i = 0; i < cats.length; i++) {
+    const cat = cats[i];
+    await fetch(`${API_HOST}/api/cats`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(cat),
+    });
+    console.log(cat);
+  }
+  console.log('DONE');
 }
