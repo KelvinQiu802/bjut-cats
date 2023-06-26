@@ -16,6 +16,8 @@ export default function Index() {
   const [campus, setCampus] = useState<Campus>('本部');
   const allCats: Cat[] = useMemo(() => JSON.parse(dataString), [dataString]);
 
+  console.log(cats);
+
   useLoad(() => {
     console.log('Index Page loaded.');
     setCats(JSON.parse(dataString));
