@@ -14,10 +14,12 @@ const fileNames = [
   'BJUT-CATS-zhonglan.csv',
 ];
 
-parse().then((data) => {
-  console.log(data);
-  writeIntoDB(data);
-});
+// Main
+(async () => {
+  const data = await parse();
+  await removeAllCats();
+  await writeIntoDB(data);
+})();
 
 // Parse all file
 async function parse() {
@@ -62,4 +64,12 @@ async function writeIntoDB(cats) {
     console.log(cat);
   }
   console.log('DONE');
+}
+
+// Remove All Cats
+async function removeAllCats() {
+  await fetch(`${API_HOST}/api/cats`, {
+    method: 'DELETE',
+  });
+  console.log('All Cats Removed');
 }
