@@ -1,7 +1,14 @@
 import { useEffect, useState } from 'react';
 import { AtTabs, AtTabsPane, AtDivider } from 'taro-ui';
 import { View } from '@tarojs/components';
-import { useLoad, navigateTo, request, showToast } from '@tarojs/taro';
+import {
+  useLoad,
+  navigateTo,
+  request,
+  showToast,
+  usePullDownRefresh,
+  stopPullDownRefresh,
+} from '@tarojs/taro';
 import style from './index.module.css';
 import CatLink from './components/CatLink';
 import CampusForm from './components/CampusForm';
@@ -34,6 +41,26 @@ export default function Index() {
           title: res.errMsg,
           icon: 'error',
         });
+      },
+    });
+  });
+
+  usePullDownRefresh(() => {
+    request({
+      url: `${API_HOST}/api/cats`,
+      method: 'GET',
+      success: (res) => {
+        setAllCats(res.data);
+        setGlobal('allCats', res.data);
+      },
+      fail: (res) => {
+        showToast({
+          title: res.errMsg,
+          icon: 'error',
+        });
+      },
+      complete: () => {
+        stopPullDownRefresh();
       },
     });
   });
