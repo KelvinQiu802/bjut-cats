@@ -88,37 +88,41 @@ function Detail() {
               </View>
             )}
           </View>
-          <View className={style.row}>
-            <View className={style.item}>
-              <Text className={style.top}>描述</Text>
-              <Text className={style.bottom}>{cat.description}</Text>
-            </View>
-          </View>
-          <View className={style.row}>
-            {cat.longitude && cat.latitude && cat.position && (
+          {cat.description && (
+            <View className={style.row}>
               <View className={style.item}>
-                <Text className={style.top}>位置</Text>
-                <Text className={style.bottom}>{cat.position}</Text>
-                <Map
-                  longitude={cat.longitude}
-                  latitude={cat.latitude}
-                  scale={14}
-                  enableSatellite
-                  markers={[
-                    {
-                      longitude: cat.longitude,
-                      latitude: cat.latitude,
-                      iconPath: '',
-                      id: 0,
-                      width: 20,
-                      height: 30,
-                    },
-                  ]}
-                  className={style.map}
-                />
+                <Text className={style.top}>描述</Text>
+                <Text className={style.bottom}>{cat.description}</Text>
+              </View>
+            </View>
+          )}
+          {cat.longitude != null &&
+            cat.latitude != null &&
+            cat.position != null && (
+              <View className={style.row}>
+                <View className={style.item}>
+                  <Text className={style.top}>位置</Text>
+                  <Text className={style.bottom}>{cat.position}</Text>
+                  <Map
+                    longitude={cat.longitude}
+                    latitude={cat.latitude}
+                    scale={14}
+                    enableSatellite
+                    markers={[
+                      {
+                        longitude: cat.longitude,
+                        latitude: cat.latitude,
+                        iconPath: '',
+                        id: 0,
+                        width: 10,
+                        height: 20,
+                      },
+                    ]}
+                    className={style.map}
+                  />
+                </View>
               </View>
             )}
-          </View>
         </View>
       </View>
     </View>
