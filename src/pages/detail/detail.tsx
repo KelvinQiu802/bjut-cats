@@ -16,7 +16,9 @@ function Detail() {
   useShareAppMessage(() => {
     return {
       title: `BJUT猫屋-${cat.name}`,
-      path: `./detail?model=${encodeURIComponent(JSON.stringify(cat))}`,
+      path: `/pages/detail/detail?model=${encodeURIComponent(
+        JSON.stringify(cat)
+      )}`,
       imageUrl: `${cat.image}`,
     };
   });
@@ -24,7 +26,9 @@ function Detail() {
   useShareTimeline(() => {
     return {
       title: `BJUT猫屋-${cat.name}`,
-      path: `./detail?model=${encodeURIComponent(JSON.stringify(cat))}`,
+      path: `/pages/detail/detail?model=${encodeURIComponent(
+        JSON.stringify(cat)
+      )}`,
       imageUrl: `${cat.image}`,
     };
   });

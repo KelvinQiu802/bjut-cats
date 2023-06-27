@@ -32,14 +32,14 @@ export default function Index() {
   useShareAppMessage(() => {
     return {
       title: 'BJUT猫屋',
-      path: './index',
+      path: '/pages/index/index',
     };
   });
 
   useShareTimeline(() => {
     return {
       title: 'BJUT猫屋',
-      path: './index',
+      path: '/pages/index/index',
     };
   });
 

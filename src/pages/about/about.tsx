@@ -20,14 +20,14 @@ export default function Index() {
   useShareAppMessage(() => {
     return {
       title: 'BJUT猫屋-协会介绍',
-      path: './about',
+      path: '/pages/about/about',
     };
   });
 
   useShareTimeline(() => {
     return {
       title: 'BJUT猫屋-协会介绍',
-      path: './about',
+      path: '/pages/about/about',
     };
   });
 
