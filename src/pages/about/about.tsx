@@ -1,4 +1,4 @@
-import { View, Text, Image } from '@tarojs/components';
+import { View, Text, Image, Button } from '@tarojs/components';
 import {
   useLoad,
   showToast,
@@ -14,19 +14,19 @@ const qrCodes = [
   'https://imgbed.codingkelvin.fun/uPic/qrcodeq34asdasd72rewfefw.png',
   'https://imgbed.codingkelvin.fun/uPic/shopqrcode2342ierhwef.jpg',
 ];
-const logo = 'https://imgbed.codingkelvin.fun/uPic/logo_animalawatchasd.png';
+const logo = 'https://imgbed.codingkelvin.fun/uPic/newlogo235324.png';
 
 export default function Index() {
   useShareAppMessage(() => {
     return {
-      title: 'BJUT猫屋-协会介绍',
+      title: '月亮湖猫屋',
       path: '/pages/about/about',
     };
   });
 
   useShareTimeline(() => {
     return {
-      title: 'BJUT猫屋-协会介绍',
+      title: '月亮湖猫屋-协会介绍',
       path: '/pages/about/about',
     };
   });
@@ -57,36 +57,18 @@ export default function Index() {
   return (
     <View className="content">
       <View className={style.centerContent}>
-        <Text className={style.title}>北工大小动物观赏协会</Text>
         <View className={style.logoBox}>
           <Image className={style.logo} src={logo} mode="widthFix" />
         </View>
       </View>
       <AtDivider className={style.divider} />
       <View className={style.contentBox}>
-        <Text className={style.sectionTitle}>协会介绍</Text>
+        <Text className={style.sectionTitle}>项目介绍</Text>
         <Text className={style.paragraph}>
-          <Text className="bold">小动物观赏协会</Text>
-          是一个致力于为校内同学们提供有关野生动物与校园流浪小动物
-          <Text className="underline">TNR、保健和治疗等</Text>
-          方面知识与交流平台的学生社团，在这里，我们共同观察校园内流浪动物与野生动物的生活状况，一起学习了解流浪动物相关的各种信息和其他野生动物知识，用照片与文字记录ta们的一点一滴。
+          <Text className="bold">月亮湖猫屋</Text>
+          ,在这里我们共同观察流浪动物的生活状况，一起学习了解流浪动物相关的各种信息和其他野生动物知识，用照片与文字记录ta们的一点一滴。
         </Text>
-        <Text className={style.paragraph}>
-          由于
-          <Text className="bold">校园常驻流浪动物以猫咪为主</Text>
-          ，再加上学校里的毛孩子们都性格鲜明，身怀绝技，深受大家喜爱，“
-          <Text className="italic">秃秃</Text>
-          ”、“
-          <Text className="italic">校霸</Text>
-          ”、“
-          <Text className="italic">井盖儿</Text>
-          ”：一个个名字口口相传而来，一段段共同度过的故事牵起回忆。除了“观赏”之外，社团也在尽最大能力对校园内流浪猫进行
-          <Text className="bold">TNR</Text>
-          <Text className="underline">(Trap抓捕/Neuter绝育/Release放归)</Text>、
-          <Text className="bold">救助</Text>、<Text className="bold">领养</Text>
-          ，控制校园流浪猫数量，并通过科普宣传帮助同学们与校园流浪动物和谐共处,，共同营造生态友好环境美丽的工大校园。
-        </Text>
-        <Text className={style.sectionTitle}>找到我们</Text>
+        <Text className={style.sectionTitle}>友情链接</Text>
         <View className={style.codeBox}>
           <Image
             src={qrCodes[0]}
@@ -104,12 +86,10 @@ export default function Index() {
           />
         </View>
         <Text className={style.paragraph}>
-          长按上方二维码关注社团
+          长按上方二维码关注
           <Text className="bold">公众号</Text>和
           <Text className="bold">微店</Text>
-          ，社团动向和猫猫周边
-          <Text className="underline">义卖活动</Text>
-          都会在上面发布噢～
+          ，猫猫文章和周边都会在上面发布噢～
         </Text>
         <Text className={style.sectionTitle}>项目开源</Text>
         <Text className={style.paragraph}>

@@ -15,7 +15,7 @@ function Detail() {
 
   useShareAppMessage(() => {
     return {
-      title: `BJUT猫屋-${cat.name}`,
+      title: `月亮湖猫屋-${cat.name}`,
       path: `/pages/detail/detail?model=${encodeURIComponent(
         JSON.stringify(cat)
       )}`,
@@ -25,7 +25,7 @@ function Detail() {
 
   useShareTimeline(() => {
     return {
-      title: `BJUT猫屋-${cat.name}`,
+      title: `月亮湖猫屋-${cat.name}`,
       path: `/pages/detail/detail?model=${encodeURIComponent(
         JSON.stringify(cat)
       )}`,

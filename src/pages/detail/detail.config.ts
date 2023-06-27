@@ -1,5 +1,5 @@
 export default definePageConfig({
-  navigationBarTitleText: 'BJUT猫屋',
+  navigationBarTitleText: '月亮湖猫屋',
   enableShareAppMessage: true,
   enableShareTimeline: true,
 });

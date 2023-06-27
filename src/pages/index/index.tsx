@@ -31,14 +31,14 @@ export default function Index() {
 
   useShareAppMessage(() => {
     return {
-      title: 'BJUT猫屋',
+      title: '月亮湖猫屋',
       path: '/pages/index/index',
     };
   });
 
   useShareTimeline(() => {
     return {
-      title: 'BJUT猫屋',
+      title: '月亮湖猫屋',
       path: '/pages/index/index',
     };
   });
