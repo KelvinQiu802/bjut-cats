@@ -96,11 +96,7 @@ export default function Index() {
           本项目使用
           <Text className="bold">MIT协议</Text>在
           <Text className="bold">Github开源</Text>
-          ，若有需要可随意使用。项目中的
-          <Text className="underline">
-            猫咪信息、图片、文字内容归北京工业大学小动物保护协会所有
-          </Text>
-          ，若有使用需要，请联系协会。
+          ，若有需要可随意使用。
           <Text className={style.link} onClick={copyGithubLink}>
             点击
           </Text>
