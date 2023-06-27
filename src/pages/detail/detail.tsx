@@ -108,7 +108,9 @@ function Detail() {
             <View className={style.row}>
               <View className={style.item}>
                 <Text className={style.top}>描述</Text>
-                <Text className={style.bottom}>{cat.description}</Text>
+                <Text className={style.bottom}>
+                  {cat.description.replace(/\\n/g, '\n')}
+                </Text>
               </View>
             </View>
           )}
