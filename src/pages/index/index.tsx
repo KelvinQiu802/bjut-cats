@@ -8,6 +8,7 @@ import {
   showToast,
   usePullDownRefresh,
   stopPullDownRefresh,
+  useShareAppMessage,
 } from '@tarojs/taro';
 import style from './index.module.css';
 import CatLink from './components/CatLink';
@@ -26,6 +27,13 @@ export default function Index() {
     process.env.NODE_ENV == 'development'
       ? 'http://localhost:7070'
       : 'https://animalwatch.codingkelvin.fun';
+
+  useShareAppMessage(() => {
+    return {
+      title: 'BJUT猫屋-图鉴',
+      path: './index',
+    };
+  });
 
   useLoad(() => {
     console.log('Index Page loaded.');

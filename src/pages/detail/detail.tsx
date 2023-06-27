@@ -1,5 +1,5 @@
-import { useLoad } from '@tarojs/taro';
-import { AtModal, AtModalHeader, AtModalContent, AtModalAction } from 'taro-ui';
+import { useLoad, useShareAppMessage } from '@tarojs/taro';
+import { AtModal } from 'taro-ui';
 import { useState } from 'react';
 import { Image, Map, Text, View } from '@tarojs/components';
 import { removeDay } from '../../../utils/date';
@@ -12,6 +12,13 @@ const defaultImg =
 function Detail() {
   const [cat, setCat] = useState<Cat>({} as Cat);
   const [showStateMsg, setShowStateMsg] = useState(false);
+
+  useShareAppMessage(() => {
+    return {
+      title: `BJUT猫屋-${cat.name}`,
+      path: `./detail?model=${encodeURIComponent(JSON.stringify(cat))}`,
+    };
+  });
 
   useLoad((options) => {
     setCat(JSON.parse(decodeURIComponent(options.model)));

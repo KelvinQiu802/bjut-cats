@@ -4,6 +4,7 @@ import {
   showToast,
   setClipboardData,
   previewImage,
+  useShareAppMessage,
 } from '@tarojs/taro';
 import { AtDivider } from 'taro-ui';
 import style from './about.module.css';
@@ -15,6 +16,13 @@ const qrCodes = [
 const logo = 'https://imgbed.codingkelvin.fun/uPic/logo_animalawatchasd.png';
 
 export default function Index() {
+  useShareAppMessage(() => {
+    return {
+      title: 'BJUT猫屋-协会介绍',
+      path: './about',
+    };
+  });
+
   useLoad(() => {
     console.log('Page loaded.');
   });
