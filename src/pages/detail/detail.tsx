@@ -17,6 +17,7 @@ function Detail() {
     return {
       title: `BJUT猫屋-${cat.name}`,
       path: `./detail?model=${encodeURIComponent(JSON.stringify(cat))}`,
+      imageUrl: `${cat.image}`,
     };
   });
 
@@ -24,6 +25,7 @@ function Detail() {
     return {
       title: `BJUT猫屋-${cat.name}`,
       path: `./detail?model=${encodeURIComponent(JSON.stringify(cat))}`,
+      imageUrl: `${cat.image}`,
     };
   });
 
