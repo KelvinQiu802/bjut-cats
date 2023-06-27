@@ -9,6 +9,7 @@ import {
   usePullDownRefresh,
   stopPullDownRefresh,
   useShareAppMessage,
+  useShareTimeline,
 } from '@tarojs/taro';
 import style from './index.module.css';
 import CatLink from './components/CatLink';
@@ -30,7 +31,14 @@ export default function Index() {
 
   useShareAppMessage(() => {
     return {
-      title: 'BJUT猫屋-图鉴',
+      title: 'BJUT猫屋',
+      path: './index',
+    };
+  });
+
+  useShareTimeline(() => {
+    return {
+      title: 'BJUT猫屋',
       path: './index',
     };
   });

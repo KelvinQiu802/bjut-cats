@@ -5,6 +5,7 @@ import {
   setClipboardData,
   previewImage,
   useShareAppMessage,
+  useShareTimeline,
 } from '@tarojs/taro';
 import { AtDivider } from 'taro-ui';
 import style from './about.module.css';
@@ -17,6 +18,13 @@ const logo = 'https://imgbed.codingkelvin.fun/uPic/logo_animalawatchasd.png';
 
 export default function Index() {
   useShareAppMessage(() => {
+    return {
+      title: 'BJUT猫屋-协会介绍',
+      path: './about',
+    };
+  });
+
+  useShareTimeline(() => {
     return {
       title: 'BJUT猫屋-协会介绍',
       path: './about',

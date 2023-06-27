@@ -1,4 +1,4 @@
-import { useLoad, useShareAppMessage } from '@tarojs/taro';
+import { useLoad, useShareAppMessage, useShareTimeline } from '@tarojs/taro';
 import { AtModal } from 'taro-ui';
 import { useState } from 'react';
 import { Image, Map, Text, View } from '@tarojs/components';
@@ -14,6 +14,13 @@ function Detail() {
   const [showStateMsg, setShowStateMsg] = useState(false);
 
   useShareAppMessage(() => {
+    return {
+      title: `BJUT猫屋-${cat.name}`,
+      path: `./detail?model=${encodeURIComponent(JSON.stringify(cat))}`,
+    };
+  });
+
+  useShareTimeline(() => {
     return {
       title: `BJUT猫屋-${cat.name}`,
       path: `./detail?model=${encodeURIComponent(JSON.stringify(cat))}`,
