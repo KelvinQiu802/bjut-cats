@@ -1,12 +1,24 @@
 import { Button, Form, Input, Text, View } from '@tarojs/components';
-import { setStorageSync, navigateBack, showToast } from '@tarojs/taro';
+import { navigateBack, showToast, getStorageSync } from '@tarojs/taro';
 import { isValidUserName } from '../../../utils/validation';
+import { post, sleep } from '../../../utils/await';
+
+const API_HOST =
+  process.env.NODE_ENV == 'development'
+    ? 'http://localhost:7070'
+    : 'https://animalwatch.codingkelvin.fun';
 
 function UserName() {
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     const userName = e.detail.value.userName;
     if (isValidUserName(userName)) {
-      setStorageSync('userName', userName);
+      // 从storage中读openId，将用户写入DB
+      const openId = getStorageSync('openId');
+      await post(`${API_HOST}/api/users`, { openId, userName });
+      showToast({
+        title: '创建成功',
+      });
+      await sleep(1000);
       navigateBack();
       return;
     }

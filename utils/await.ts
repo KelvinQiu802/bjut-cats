@@ -1,6 +1,6 @@
 import { login, request } from '@tarojs/taro';
 
-export async function loginAwait() {
+export function loginAwait() {
   return new Promise<{ code: string; errMsg: string }>((resolve, reject) => {
     login({
       success: (res) => {
@@ -13,7 +13,7 @@ export async function loginAwait() {
   });
 }
 
-export async function get(url: string, data = {}) {
+export function get(url: string, data = {}) {
   return new Promise((resolve, reject) => {
     request({
       method: 'GET',
@@ -27,4 +27,24 @@ export async function get(url: string, data = {}) {
       },
     });
   });
+}
+
+export function post(url: string, data = {}) {
+  return new Promise((resolve, reject) => {
+    request({
+      method: 'POST',
+      url: url,
+      data: data,
+      success: (res) => {
+        resolve(res);
+      },
+      fail: (res) => {
+        reject(new Error(res.errMsg));
+      },
+    });
+  });
+}
+
+export function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
 }
