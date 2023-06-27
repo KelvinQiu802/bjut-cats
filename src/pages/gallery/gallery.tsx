@@ -24,6 +24,11 @@ async function getOpenId(code: string): Promise<string> {
   return data.openid;
 }
 
+async function getUserFromDB(openId: string): Promise<any> {
+  const result = await get(`${API_HOST}/api/users/${openId}`);
+  return result;
+}
+
 function Gallery() {
   useLoad(() => {});
 
@@ -39,19 +44,26 @@ function Gallery() {
 
   const handleFabClick = async () => {
     // 从localStorage读openId，来判断是否已经登陆
-    let openId: String = getStorageSync('openId');
+    let openId: string = getStorageSync('openId');
     if (openId == '') {
       // 没有登陆, 调用login，请求api，获得openId，
       try {
         const { code } = await loginAwait();
         openId = await getOpenId(code);
         setStorageSync('openId', openId);
-        console.log(openId);
+        // 查询数据库
+        const result = await getUserFromDB(openId);
+        if (result.statusCode == 404) {
+          // 如果没有对应用户，则要求设置用户名, 添加用户到数据库，设置storage登录状态, 上传图片
+          console.log('NOT FOUND');
+        } else {
+          // 已有该用户，则可以上传图片 (storage被清除后会出现这种情况)
+          // result.data.userName
+          console.log(result);
+        }
       } catch (err) {
         showToast({ title: err.message });
       }
-      // 查询数据库，如果没有对应用户，则要求设置用户名, 添加用户到数据库，设置storage登录状态
-      // 若数据库中已有该用户，则可以上传图片 (storage被清除后会出现这种情况)
     } else {
       // 已登陆，上传图片
     }
