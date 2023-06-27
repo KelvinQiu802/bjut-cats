@@ -7,6 +7,7 @@ import {
   getStorageSync,
   setStorageSync,
   showToast,
+  navigateTo,
 } from '@tarojs/taro';
 import { AtFab } from 'taro-ui';
 import style from './gallery.module.css';
@@ -56,16 +57,19 @@ function Gallery() {
         if (result.statusCode == 404) {
           // 如果没有对应用户，则要求设置用户名, 添加用户到数据库，设置storage登录状态, 上传图片
           console.log('NOT FOUND');
+          // UserName页面得到userName并同步写入storage
+          navigateTo({ url: '../userName/userName' });
         } else {
           // 已有该用户，则可以上传图片 (storage被清除后会出现这种情况)
           // result.data.userName
-          console.log(result);
+          console.log('未登录，但用户存在');
         }
       } catch (err) {
         showToast({ title: err.message });
       }
     } else {
       // 已登陆，上传图片
+      console.log('已登陆');
     }
   };
 

@@ -5,6 +5,7 @@ export default defineAppConfig({
     'pages/detail/detail',
     'pages/result/result',
     'pages/gallery/gallery',
+    'pages/userName/userName',
   ],
   tabBar: {
     list: [
