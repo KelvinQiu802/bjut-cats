@@ -4,6 +4,7 @@ export default defineAppConfig({
     'pages/about/about',
     'pages/detail/detail',
     'pages/result/result',
+    'pages/gallery/gallery',
   ],
   tabBar: {
     list: [
@@ -12,6 +13,12 @@ export default defineAppConfig({
         selectedIconPath: './icon/guide_selected.png',
         pagePath: 'pages/index/index',
         text: '图鉴',
+      },
+      {
+        iconPath: './icon/guide.png',
+        selectedIconPath: './icon/guide_selected.png',
+        pagePath: 'pages/gallery/gallery',
+        text: '相册',
       },
       {
         iconPath: './icon/about.png',
