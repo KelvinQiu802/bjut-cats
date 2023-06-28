@@ -62,9 +62,8 @@ function Gallery() {
           // 创建成功后会回到这个页面，用户需要重新点击添加按钮，这样直接进入已登陆的情况
         } else {
           // 已有该用户，则可以上传图片 (storage被清除后会出现这种情况)
-          // result.data.userName
-          // TODO: 这个应该可以直合已登陆的合并
           console.log('未登录，但用户存在');
+          navigateTo({ url: '../uploadImage/uploadImage' });
         }
       } catch (err) {
         showToast({ title: err.message, icon: 'error' });
