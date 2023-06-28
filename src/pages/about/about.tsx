@@ -1,4 +1,5 @@
-import { View, Text, Image, Button } from '@tarojs/components';
+import { useState } from 'react';
+import { View, Text, Image } from '@tarojs/components';
 import {
   useLoad,
   showToast,
@@ -6,9 +7,12 @@ import {
   previewImage,
   useShareAppMessage,
   useShareTimeline,
+  getStorageSync,
+  navigateTo,
 } from '@tarojs/taro';
-import { AtDivider } from 'taro-ui';
+import { AtDivider, AtButton } from 'taro-ui';
 import style from './about.module.css';
+import { get, loginAwait } from '../../../utils/await';
 
 const qrCodes = [
   'https://imgbed.codingkelvin.fun/uPic/qrcodeq34asdasd72rewfefw.png',
@@ -16,7 +20,38 @@ const qrCodes = [
 ];
 const logo = 'https://imgbed.codingkelvin.fun/uPic/newlogo235324.png';
 
+const API_HOST =
+  process.env.NODE_ENV == 'development'
+    ? 'http://localhost:7070'
+    : 'https://animalwatch.codingkelvin.fun';
+
+async function getOpenId(code: string): Promise<string> {
+  const { data } = (await get(
+    `${API_HOST}/api/jscode2session?js_code=${code}`
+  )) as { data: { openid: string; session_key: string } };
+  return data.openid;
+}
+
 export default function Index() {
+  const [isAdminm, setIsAdmin] = useState(false);
+
+  useLoad(async () => {
+    let openId = getStorageSync('openId');
+    if (openId == '') {
+      // 处理openId不在storage里的情况
+      const { code } = await loginAwait();
+      openId = await getOpenId(code);
+    }
+    // 查数据库看是否是admin，从来没注册过的openId会404
+    const { data, status } = (await get(
+      `${API_HOST}/api/users/${openId}`
+    )) as any;
+    if (status == 404) return;
+    if (data.role == 'admin') {
+      setIsAdmin(true);
+    }
+  });
+
   useShareAppMessage(() => {
     return {
       title: '月亮湖猫屋',
@@ -104,6 +139,15 @@ export default function Index() {
         </Text>
       </View>
       <AtDivider fontColor="#ccc">到底啦</AtDivider>
+      {isAdminm && (
+        <AtButton
+          onClick={() => {
+            navigateTo({ url: '../imageAdmin/imageAdmin' });
+          }}
+        >
+          审核图片
+        </AtButton>
+      )}
     </View>
   );
 }
