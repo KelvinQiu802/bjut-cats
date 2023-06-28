@@ -63,7 +63,7 @@ function Gallery() {
         } else {
           // 已有该用户，则可以上传图片 (storage被清除后会出现这种情况)
           // result.data.userName
-          // 这个应该可以直合已登陆的合并
+          // TODO: 这个应该可以直合已登陆的合并
           console.log('未登录，但用户存在');
         }
       } catch (err) {
@@ -72,6 +72,7 @@ function Gallery() {
     } else {
       // 已登陆，上传图片
       console.log('已登陆');
+      navigateTo({ url: '../uploadImage/uploadImage' });
     }
   };
 
