@@ -7,6 +7,7 @@ export default defineAppConfig({
     'pages/gallery/gallery',
     'pages/userName/userName',
     'pages/uploadImage/uploadImage',
+    'pages/imageAdmin/imageAdmin',
   ],
   tabBar: {
     list: [
