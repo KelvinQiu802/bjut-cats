@@ -67,7 +67,7 @@ function Gallery() {
           console.log('未登录，但用户存在');
         }
       } catch (err) {
-        showToast({ title: err.message });
+        showToast({ title: err.message, icon: 'error' });
       }
     } else {
       // 已登陆，上传图片
