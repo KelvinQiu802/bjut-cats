@@ -54,3 +54,5 @@ type Hair = '长毛' | '短毛';
 type Neutered = '已绝育' | '未绝育' | '未知';
 
 type State = '在校' | '毕业' | '休学' | '喵星';
+
+type ImageState = '待审核' | '通过' | '不通过' | '精选';
