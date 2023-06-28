@@ -13,26 +13,10 @@ export function loginAwait() {
   });
 }
 
-export function get(url: string, data = {}) {
+export function requestAwait(method: any, url: string, data = {}) {
   return new Promise((resolve, reject) => {
     request({
-      method: 'GET',
-      url: url,
-      data: data,
-      success: (res) => {
-        resolve(res);
-      },
-      fail: (res) => {
-        reject(new Error(res.errMsg));
-      },
-    });
-  });
-}
-
-export function post(url: string, data = {}) {
-  return new Promise((resolve, reject) => {
-    request({
-      method: 'POST',
+      method: method,
       url: url,
       data: data,
       success: (res) => {

@@ -12,7 +12,7 @@ import {
 } from '@tarojs/taro';
 import { AtDivider, AtButton } from 'taro-ui';
 import style from './about.module.css';
-import { get, loginAwait } from '../../../utils/await';
+import { requestAwait, loginAwait } from '../../../utils/await';
 
 const qrCodes = [
   'https://imgbed.codingkelvin.fun/uPic/qrcodeq34asdasd72rewfefw.png',
@@ -26,7 +26,8 @@ const API_HOST =
     : 'https://animalwatch.codingkelvin.fun';
 
 async function getOpenId(code: string): Promise<string> {
-  const { data } = (await get(
+  const { data } = (await requestAwait(
+    'GET',
     `${API_HOST}/api/jscode2session?js_code=${code}`
   )) as { data: { openid: string; session_key: string } };
   return data.openid;
@@ -43,7 +44,8 @@ export default function Index() {
       openId = await getOpenId(code);
     }
     // 查数据库看是否是admin，从来没注册过的openId会404
-    const { data, status } = (await get(
+    const { data, status } = (await requestAwait(
+      'GET',
       `${API_HOST}/api/users/${openId}`
     )) as any;
     if (status == 404) return;

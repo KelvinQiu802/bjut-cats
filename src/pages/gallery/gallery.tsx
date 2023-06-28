@@ -13,7 +13,7 @@ import {
 } from '@tarojs/taro';
 import { AtFab } from 'taro-ui';
 import style from './gallery.module.css';
-import { loginAwait, get } from '../../../utils/await';
+import { loginAwait, requestAwait } from '../../../utils/await';
 
 const API_HOST =
   process.env.NODE_ENV == 'development'
@@ -21,30 +21,26 @@ const API_HOST =
     : 'https://animalwatch.codingkelvin.fun';
 
 async function getOpenId(code: string): Promise<string> {
-  const { data } = (await get(
+  const { data } = (await requestAwait(
+    'GET',
     `${API_HOST}/api/jscode2session?js_code=${code}`
   )) as { data: { openid: string; session_key: string } };
   return data.openid;
 }
 
 async function getUserFromDB(openId: string): Promise<any> {
-  const result = await get(`${API_HOST}/api/users/${openId}`);
+  const result = await requestAwait('GET', `${API_HOST}/api/users/${openId}`);
   return result;
 }
-
-type Image = {
-  openId: string;
-  imageUrl: string;
-  catName: string;
-  campus: Campus;
-  state: ImageState;
-};
 
 function Gallery() {
   const [images, setImages] = useState<Image[]>([]);
 
   async function refreshImages() {
-    const { data } = (await get(`${API_HOST}/api/images/通过`)) as {
+    const { data } = (await requestAwait(
+      'GET',
+      `${API_HOST}/api/images/通过`
+    )) as {
       data: Image[];
     };
     setImages(data);

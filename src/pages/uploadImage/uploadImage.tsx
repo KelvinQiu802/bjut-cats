@@ -10,7 +10,7 @@ import { AtButton, AtImagePicker, AtList, AtListItem } from 'taro-ui';
 import { showToast, showModal } from '@tarojs/taro';
 import { getGlobal } from '../../../utils/globalData';
 import { upload } from '../../../utils/qiniuUploader';
-import { post } from '../../../utils/await';
+import { requestAwait } from '../../../utils/await';
 import style from './uploadImage.module.css';
 
 type File = {
@@ -52,7 +52,7 @@ function UploadImage() {
       success: async (res) => {
         // 拿到返回的url，向数据库中添加
         const openId = getStorageSync('openId');
-        await post(`${API_HOST}/api/images`, {
+        await requestAwait('POST', `${API_HOST}/api/images`, {
           openId,
           imageUrl: `${IMAGE_BED}/${res.fileURL}`,
           state: '待审核',

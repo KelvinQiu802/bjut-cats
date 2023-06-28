@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { View } from '@tarojs/components';
 import { navigateBack, showToast, getStorageSync } from '@tarojs/taro';
 import { isValidUserName } from '../../../utils/validation';
-import { post, sleep } from '../../../utils/await';
+import { requestAwait, sleep } from '../../../utils/await';
 import style from './userName.module.css';
 
 const API_HOST =
@@ -20,7 +20,11 @@ function UserName() {
       // 从storage中读openId，将用户写入DB
       const openId = getStorageSync('openId');
       try {
-        await post(`${API_HOST}/api/users`, { openId, userName, role: 'user' });
+        await requestAwait('POST', `${API_HOST}/api/users`, {
+          openId,
+          userName,
+          role: 'user',
+        });
         showToast({
           title: '创建成功',
         });
