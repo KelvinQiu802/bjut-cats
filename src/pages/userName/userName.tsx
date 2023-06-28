@@ -1,4 +1,4 @@
-import { AtButton, AtForm, AtInput } from 'taro-ui';
+import { AtButton, AtInput } from 'taro-ui';
 import { useState } from 'react';
 import { View } from '@tarojs/components';
 import { navigateBack, showToast, getStorageSync } from '@tarojs/taro';
@@ -19,10 +19,14 @@ function UserName() {
     if (isValidUserName(userName)) {
       // 从storage中读openId，将用户写入DB
       const openId = getStorageSync('openId');
-      await post(`${API_HOST}/api/users`, { openId, userName });
-      showToast({
-        title: '创建成功',
-      });
+      try {
+        await post(`${API_HOST}/api/users`, { openId, userName, role: 'user' });
+        showToast({
+          title: '创建成功',
+        });
+      } catch (err) {
+        showToast({ title: err.message, icon: 'error' });
+      }
       await sleep(1000);
       navigateBack();
       return;

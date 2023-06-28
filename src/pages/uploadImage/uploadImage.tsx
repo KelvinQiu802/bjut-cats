@@ -14,7 +14,13 @@ function UploadImage() {
   const [pickedCampus, setPickedCampus] = useState('本部');
   const [catsNameList, setCatsNameList] = useState<string[]>([]);
   const [pickedCatName, setPickedCatName] = useState('');
+  const [loading, setLoading] = useState(false);
   const campusList = ['本部', '通州', '中篮'];
+
+  const handleSubmit = () => {
+    setLoading(true);
+    // 拿到图片url，上传qiniu，拿到返回的url，向数据库中添加
+  };
 
   useEffect(() => {
     setCatsNameList(() => {
@@ -30,8 +36,6 @@ function UploadImage() {
   useEffect(() => {
     setPickedCatName(catsNameList[1]);
   }, [catsNameList]);
-
-  const handleSubmit = () => {};
 
   // 先选图片，然后再, 选校区，选猫
   return (
@@ -78,6 +82,7 @@ function UploadImage() {
         onClick={handleSubmit}
         className={style.btn}
         disabled={files.length == 0}
+        loading={loading}
       >
         上传
       </AtButton>
