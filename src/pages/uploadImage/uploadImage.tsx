@@ -36,7 +36,7 @@ function UploadImage() {
     // 压图
     const { tempFilePath } = await compressImage({
       src: files[0].url,
-      quality: 20,
+      quality: 10,
     });
     // 拿到图片url，上传qiniu
     upload({

@@ -1,6 +1,6 @@
-import { Text, View } from '@tarojs/components';
+import { useState } from 'react';
+import { Text, View, GridView, Image } from '@tarojs/components';
 import {
-  useLoad,
   usePullDownRefresh,
   useShareAppMessage,
   useShareTimeline,
@@ -8,6 +8,8 @@ import {
   setStorageSync,
   showToast,
   navigateTo,
+  useDidShow,
+  stopPullDownRefresh,
 } from '@tarojs/taro';
 import { AtFab } from 'taro-ui';
 import style from './gallery.module.css';
@@ -30,17 +32,39 @@ async function getUserFromDB(openId: string): Promise<any> {
   return result;
 }
 
-function Gallery() {
-  useLoad(() => {});
+type Image = {
+  openId: string;
+  imageUrl: string;
+  catName: string;
+  campus: Campus;
+  state: ImageState;
+};
 
-  usePullDownRefresh(() => {});
+function Gallery() {
+  const [images, setImages] = useState<Image[]>([]);
+
+  async function refreshImages() {
+    const { data } = (await get(`${API_HOST}/api/images/通过`)) as {
+      data: Image[];
+    };
+    setImages(data);
+  }
+
+  useDidShow(() => {
+    refreshImages();
+  });
+
+  usePullDownRefresh(async () => {
+    await refreshImages();
+    stopPullDownRefresh();
+  });
 
   useShareAppMessage(() => {
-    return {};
+    return { title: '月亮湖猫屋-相册' };
   });
 
   useShareTimeline(() => {
-    return {};
+    return { title: '月亮湖猫屋-相册' };
   });
 
   const handleFabClick = async () => {
@@ -77,6 +101,17 @@ function Gallery() {
 
   return (
     <View className="content">
+      <GridView type="masonry" crossAxisGap={10}>
+        {images.map((image) => (
+          <Image
+            key={image.imageUrl}
+            src={`${image.imageUrl}`}
+            style={{ height: '180px' }}
+            mode="aspectFit"
+          />
+        ))}
+      </GridView>
+
       <AtFab className={style.fab} onClick={handleFabClick}>
         <Text className="at-fab__icon at-icon at-icon-add"></Text>
       </AtFab>
