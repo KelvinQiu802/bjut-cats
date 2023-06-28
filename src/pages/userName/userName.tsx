@@ -1,7 +1,10 @@
-import { Button, Form, Input, Text, View } from '@tarojs/components';
+import { AtButton, AtForm, AtInput } from 'taro-ui';
+import { useState } from 'react';
+import { View } from '@tarojs/components';
 import { navigateBack, showToast, getStorageSync } from '@tarojs/taro';
 import { isValidUserName } from '../../../utils/validation';
 import { post, sleep } from '../../../utils/await';
+import style from './userName.module.css';
 
 const API_HOST =
   process.env.NODE_ENV == 'development'
@@ -9,8 +12,9 @@ const API_HOST =
     : 'https://animalwatch.codingkelvin.fun';
 
 function UserName() {
-  const handleSubmit = async (e) => {
-    const userName = e.detail.value.userName;
+  const [userName, setUserName] = useState('');
+
+  const handleSubmit = async () => {
     if (isValidUserName(userName)) {
       // 从storage中读openId，将用户写入DB
       const openId = getStorageSync('openId');
@@ -27,16 +31,27 @@ function UserName() {
 
   return (
     <View className="content">
-      <Form onSubmit={handleSubmit}>
-        <Input
-          type="nickname"
-          className="weui-input"
+      <AtForm onSubmit={handleSubmit}>
+        <AtInput
+          autoFocus
+          focus
           name="userName"
-          placeholder="请输入昵称"
+          title="用户名:"
+          type="text"
+          placeholder="不超过10个字符"
+          value={userName}
+          onChange={(v) => setUserName(v as string)}
+          className={style.input}
         />
-        <Button formType="submit">确定</Button>
-        <Text>用户名不能为空，且不多于10个字符</Text>
-      </Form>
+        <AtButton
+          formType="submit"
+          disabled={!isValidUserName(userName)}
+          type="primary"
+          className={style.btn}
+        >
+          提交
+        </AtButton>
+      </AtForm>
     </View>
   );
 }

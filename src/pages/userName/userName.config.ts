@@ -1,3 +1,3 @@
 export default definePageConfig({
-  navigationBarTitleText: '月亮湖猫屋',
+  navigationBarTitleText: '用户注册',
 });
