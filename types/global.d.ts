@@ -45,6 +45,14 @@ interface Cat {
   orderWeight: number | null;
 }
 
+interface Image {
+  openId: string;
+  imageUrl: string;
+  catName: string;
+  campus: Campus;
+  state: ImageState;
+}
+
 type Campus = '本部' | '通州' | '中篮';
 
 type Gender = '公' | '母' | '未知';
