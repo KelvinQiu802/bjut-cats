@@ -1,0 +1,32 @@
+.card {
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+
+.icon {
+  width: 40px;
+  height: 40px;
+}
+
+.bottom {
+  display: flex;
+  padding: 0 25px;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+}
+
+.userName {
+  font-size: 0.7em;
+  color: #666;
+}
+
+.catInfo {
+  font-size: 0.7em;
+  color: #666;
+}

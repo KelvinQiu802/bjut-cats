@@ -5,11 +5,7 @@ import { navigateBack, showToast, getStorageSync } from '@tarojs/taro';
 import { isValidUserName } from '../../../utils/validation';
 import { requestAwait, sleep } from '../../../utils/await';
 import style from './userName.module.css';
-
-const API_HOST =
-  process.env.NODE_ENV == 'development'
-    ? 'http://localhost:7070'
-    : 'https://animalwatch.codingkelvin.fun';
+import { API_HOST } from '../../../utils/db';
 
 function UserName() {
   const [userName, setUserName] = useState('');

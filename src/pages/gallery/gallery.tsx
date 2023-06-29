@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Text, View, GridView, Image } from '@tarojs/components';
+import { Text, View, GridView } from '@tarojs/components';
 import {
   usePullDownRefresh,
   useShareAppMessage,
@@ -15,17 +15,26 @@ import { AtFab } from 'taro-ui';
 import style from './gallery.module.css';
 import { loginAwait, requestAwait } from '../../../utils/await';
 import { getUserFromDB, getOpenId, API_HOST } from '../../../utils/db';
+import ImageItem from './components/ImageItem';
 
 function Gallery() {
   const [images, setImages] = useState<Image[]>([]);
 
   async function refreshImages() {
-    const { data } = (await requestAwait(
+    // 图片排列顺序再想想
+    const images1 = (await requestAwait(
+      'GET',
+      `${API_HOST}/api/images/精选`
+    )) as {
+      data: Image[];
+    };
+    const images2 = (await requestAwait(
       'GET',
       `${API_HOST}/api/images/通过`
     )) as {
       data: Image[];
     };
+    const data = images1.data.concat(images2.data);
     setImages(data);
   }
 
@@ -79,17 +88,14 @@ function Gallery() {
   };
 
   return (
-    <View className="content">
-      <GridView type="masonry" crossAxisGap={10}>
-        {images.map((image) => (
-          <Image
-            key={image.imageUrl}
-            src={`${image.imageUrl}`}
-            style={{ height: '180px' }}
-            mode="aspectFit"
-          />
-        ))}
-      </GridView>
+    <View className={style.content}>
+      <View className={style.imageList}>
+        <GridView type="masonry" crossAxisGap={10} mainAxisGap={15}>
+          {images.map((image) => (
+            <ImageItem image={image} key={image.imageUrl} />
+          ))}
+        </GridView>
+      </View>
 
       <AtFab className={style.fab} onClick={handleFabClick}>
         <Text className="at-fab__icon at-icon at-icon-add"></Text>

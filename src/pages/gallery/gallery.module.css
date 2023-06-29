@@ -1,5 +1,13 @@
+.content {
+  padding: 0 30px;
+}
+
 .fab {
   position: fixed;
   bottom: 50px;
   right: 50px;
+}
+
+.imageList {
+  margin-top: 10px;
 }
