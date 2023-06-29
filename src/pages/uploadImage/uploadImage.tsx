@@ -12,15 +12,11 @@ import { getGlobal } from '../../../utils/globalData';
 import { upload } from '../../../utils/qiniuUploader';
 import { requestAwait } from '../../../utils/await';
 import style from './uploadImage.module.css';
+import { API_HOST } from '../../../utils/db';
 
 type File = {
   url: string;
 };
-
-const API_HOST =
-  process.env.NODE_ENV == 'development'
-    ? 'http://localhost:7070'
-    : 'https://animalwatch.codingkelvin.fun';
 
 const IMAGE_BED = 'https://imgbed.codingkelvin.fun/';
 

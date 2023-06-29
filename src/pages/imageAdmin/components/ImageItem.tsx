@@ -5,20 +5,11 @@ import { Image, Picker, Text, View } from '@tarojs/components';
 import { requestAwait } from '../../../../utils/await';
 import { getGlobal } from '../../../../utils/globalData';
 import style from './ImageItem.module.css';
+import { API_HOST, getUserFromDB } from '../../../../utils/db';
 
 interface Props {
   image: Image;
   refreshImages: () => Promise<void>;
-}
-
-const API_HOST =
-  process.env.NODE_ENV == 'development'
-    ? 'http://localhost:7070'
-    : 'https://animalwatch.codingkelvin.fun';
-
-async function getUserFromDB(openId: string): Promise<any> {
-  const result = await requestAwait('GET', `${API_HOST}/api/users/${openId}`);
-  return result;
 }
 
 function ImageItem({ image, refreshImages }: Props) {

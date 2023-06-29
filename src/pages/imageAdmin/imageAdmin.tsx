@@ -2,11 +2,7 @@ import { View } from '@tarojs/components';
 import { useEffect, useState } from 'react';
 import { requestAwait } from '../../../utils/await';
 import ImageItem from './components/ImageItem';
-
-const API_HOST =
-  process.env.NODE_ENV == 'development'
-    ? 'http://localhost:7070'
-    : 'https://animalwatch.codingkelvin.fun';
+import { API_HOST } from '../../../utils/db';
 
 function ImageAdmin() {
   // 点击图片放大，可以修改校区，猫咪名称和状态

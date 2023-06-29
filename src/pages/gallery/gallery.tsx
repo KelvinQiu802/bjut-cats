@@ -14,24 +14,7 @@ import {
 import { AtFab } from 'taro-ui';
 import style from './gallery.module.css';
 import { loginAwait, requestAwait } from '../../../utils/await';
-
-const API_HOST =
-  process.env.NODE_ENV == 'development'
-    ? 'http://localhost:7070'
-    : 'https://animalwatch.codingkelvin.fun';
-
-async function getOpenId(code: string): Promise<string> {
-  const { data } = (await requestAwait(
-    'GET',
-    `${API_HOST}/api/jscode2session?js_code=${code}`
-  )) as { data: { openid: string; session_key: string } };
-  return data.openid;
-}
-
-async function getUserFromDB(openId: string): Promise<any> {
-  const result = await requestAwait('GET', `${API_HOST}/api/users/${openId}`);
-  return result;
-}
+import { getUserFromDB, getOpenId, API_HOST } from '../../../utils/db';
 
 function Gallery() {
   const [images, setImages] = useState<Image[]>([]);

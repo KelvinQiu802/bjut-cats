@@ -16,6 +16,7 @@ import CatLink from './components/CatLink';
 import CampusForm from './components/CampusForm';
 import Search from './components/Search';
 import { setGlobal } from '../../../utils/globalData';
+import { API_HOST } from '../../../utils/db';
 
 export default function Index() {
   const [cats, setCats] = useState<Cat[]>([]);
@@ -23,11 +24,6 @@ export default function Index() {
   const [state, setState] = useState(0);
   const [campus, setCampus] = useState<Campus>('本部');
   const [allCats, setAllCats] = useState<Cat[]>([]);
-
-  const API_HOST =
-    process.env.NODE_ENV == 'development'
-      ? 'http://localhost:7070'
-      : 'https://animalwatch.codingkelvin.fun';
 
   useShareAppMessage(() => {
     return {

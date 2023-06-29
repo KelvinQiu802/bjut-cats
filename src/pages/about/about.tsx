@@ -13,25 +13,13 @@ import {
 import { AtDivider, AtButton } from 'taro-ui';
 import style from './about.module.css';
 import { requestAwait, loginAwait } from '../../../utils/await';
+import { API_HOST, getOpenId } from '../../../utils/db';
 
 const qrCodes = [
   'https://imgbed.codingkelvin.fun/uPic/qrcodeq34asdasd72rewfefw.png',
   'https://imgbed.codingkelvin.fun/uPic/shopqrcode2342ierhwef.jpg',
 ];
 const logo = 'https://imgbed.codingkelvin.fun/uPic/newlogo235324.png';
-
-const API_HOST =
-  process.env.NODE_ENV == 'development'
-    ? 'http://localhost:7070'
-    : 'https://animalwatch.codingkelvin.fun';
-
-async function getOpenId(code: string): Promise<string> {
-  const { data } = (await requestAwait(
-    'GET',
-    `${API_HOST}/api/jscode2session?js_code=${code}`
-  )) as { data: { openid: string; session_key: string } };
-  return data.openid;
-}
 
 export default function Index() {
   const [isAdminm, setIsAdmin] = useState(false);
