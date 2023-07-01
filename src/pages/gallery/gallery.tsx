@@ -5,20 +5,21 @@ import {
   useShareAppMessage,
   useShareTimeline,
   getStorageSync,
-  setStorageSync,
-  showToast,
   navigateTo,
   useDidShow,
   stopPullDownRefresh,
 } from '@tarojs/taro';
 import { AtFab } from 'taro-ui';
 import style from './gallery.module.css';
-import { loginAwait, requestAwait } from '../../../utils/await';
-import { getUserFromDB, getOpenId, API_HOST } from '../../../utils/db';
+import { requestAwait } from '../../../utils/await';
+import { API_HOST, signUp } from '../../../utils/db';
 import ImageItem from './components/ImageItem';
 
 function Gallery() {
   const [images, setImages] = useState<Image[]>([]);
+  // 记录用户点赞过的图片url
+  // TODO: 如果没有登录或注册，点击喜欢需要跑登录或注册
+  const [likes, setLikes] = useState<string[]>([]);
 
   async function refreshImages() {
     // 图片排列顺序再想想
@@ -38,12 +39,23 @@ function Gallery() {
     setImages(data);
   }
 
+  async function refreshLike() {
+    const openId: string = getStorageSync('openId');
+    const { data } = (await requestAwait(
+      'GET',
+      `${API_HOST}/api/likes?by=openId&value=${openId}`
+    )) as any;
+    setLikes(data.map((like) => like.imageUrl));
+  }
+
   useDidShow(() => {
     refreshImages();
+    refreshLike();
   });
 
   usePullDownRefresh(async () => {
     await refreshImages();
+    await refreshLike();
     stopPullDownRefresh();
   });
 
@@ -59,27 +71,11 @@ function Gallery() {
     // 从localStorage读openId，来判断是否已经登陆
     let openId: string = getStorageSync('openId');
     if (openId == '') {
-      // 没有登陆, 调用login，请求api，获得openId，
-      try {
-        const { code } = await loginAwait();
-        openId = await getOpenId(code);
-        setStorageSync('openId', openId);
-        // 查询数据库
-        const result = await getUserFromDB(openId);
-        if (result.statusCode == 404) {
-          // 如果没有对应用户，则要求设置用户名, 添加用户到数据库，设置storage登录状态, 上传图片
-          console.log('NOT FOUND');
-          // UserName页面得到userName,将新用户插入到数据库
-          navigateTo({ url: '../userName/userName' });
-          // 创建成功后会回到这个页面，用户需要重新点击添加按钮，这样直接进入已登陆的情况
-        } else {
-          // 已有该用户，则可以上传图片 (storage被清除后会出现这种情况)
-          console.log('未登录，但用户存在');
-          navigateTo({ url: '../uploadImage/uploadImage' });
-        }
-      } catch (err) {
-        showToast({ title: err.message, icon: 'error' });
-      }
+      // 未登录或注册
+      // TODO: 删除用户，测试一下注册
+      signUp(async () => {
+        navigateTo({ url: '../uploadImage/uploadImage' });
+      });
     } else {
       // 已登陆，上传图片
       console.log('已登陆');
@@ -92,7 +88,11 @@ function Gallery() {
       <View className={style.imageList}>
         <GridView type="masonry" crossAxisGap={10} mainAxisGap={15}>
           {images.map((image) => (
-            <ImageItem image={image} key={image.imageUrl} />
+            <ImageItem
+              image={image}
+              key={image.imageUrl}
+              isLike={likes.includes(image.imageUrl)}
+            />
           ))}
         </GridView>
       </View>

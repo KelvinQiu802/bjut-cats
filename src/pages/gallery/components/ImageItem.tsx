@@ -2,17 +2,19 @@ import { useEffect, useState } from 'react';
 import { Image, Text, View } from '@tarojs/components';
 import { previewImage } from '@tarojs/taro';
 import style from './ImageItem.module.css';
-import { getUserFromDB } from '../../../../utils/db';
+import { getUserFromDB, API_HOST } from '../../../../utils/db';
+import { requestAwait } from '../../../../utils/await';
 import likeIcon from '../../../icon/like.png';
 import likeFill from '../../../icon/like_fill.png';
 
 interface Props {
   image: Image;
+  isLike: boolean;
 }
 
-function ImageItem({ image }: Props) {
+function ImageItem({ image, isLike }: Props) {
   const [userName, setUserName] = useState('');
-  const [like, setLike] = useState(false);
+  const [like, setLike] = useState(isLike);
 
   useEffect(() => {
     (async () => {
@@ -22,6 +24,10 @@ function ImageItem({ image }: Props) {
   }, []);
 
   const handleLike = () => {
+    requestAwait('POST', `${API_HOST}/api/likes`, {
+      openId: image.openId,
+      imageUrl: image.imageUrl,
+    });
     setLike(true);
   };
 
