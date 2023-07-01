@@ -18,7 +18,6 @@ import ImageItem from './components/ImageItem';
 function Gallery() {
   const [images, setImages] = useState<Image[]>([]);
   // 记录用户点赞过的图片url
-  // TODO: 如果没有登录或注册，点击喜欢需要跑登录或注册
   const [likes, setLikes] = useState<string[]>([]);
 
   async function refreshImages() {
@@ -72,8 +71,7 @@ function Gallery() {
     let openId: string = getStorageSync('openId');
     if (openId == '') {
       // 未登录或注册
-      // TODO: 删除用户，测试一下注册
-      signUp(async () => {
+      signUp(() => {
         navigateTo({ url: '../uploadImage/uploadImage' });
       });
     } else {

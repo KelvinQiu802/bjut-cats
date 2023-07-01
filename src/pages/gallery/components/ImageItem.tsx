@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Image, Text, View } from '@tarojs/components';
-import { previewImage } from '@tarojs/taro';
+import { getStorageSync, previewImage } from '@tarojs/taro';
 import style from './ImageItem.module.css';
-import { getUserFromDB, API_HOST } from '../../../../utils/db';
+import { getUserFromDB, API_HOST, signUp } from '../../../../utils/db';
 import { requestAwait } from '../../../../utils/await';
 import likeIcon from '../../../icon/like.png';
 import likeFill from '../../../icon/like_fill.png';
@@ -24,6 +24,13 @@ function ImageItem({ image, isLike }: Props) {
   }, []);
 
   const handleLike = () => {
+    const openId: string = getStorageSync('openId');
+    // 先登录
+    if (openId == '') {
+      signUp(handleLike);
+      return;
+    }
+    // 已登陆
     requestAwait('POST', `${API_HOST}/api/likes`, {
       openId: image.openId,
       imageUrl: image.imageUrl,

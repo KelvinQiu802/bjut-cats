@@ -19,7 +19,7 @@ export async function getOpenId(code: string): Promise<string> {
   return data.openid;
 }
 
-export async function signUp(callback: () => {}) {
+export async function signUp(callback: () => void) {
   // 没有登陆, 调用login，请求api，获得openId，
   try {
     const { code } = await loginAwait();
