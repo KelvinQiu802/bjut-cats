@@ -53,6 +53,13 @@ interface Image {
   state: ImageState;
 }
 
+interface Article {
+  title: string;
+  subTitle: string;
+  image: string;
+  link: string;
+}
+
 type Campus = '本部' | '通州' | '中篮';
 
 type Gender = '公' | '母' | '未知';
