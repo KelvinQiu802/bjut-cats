@@ -8,6 +8,7 @@ export default defineAppConfig({
     'pages/userName/userName',
     'pages/uploadImage/uploadImage',
     'pages/imageAdmin/imageAdmin',
+    'pages/articles/articles',
   ],
   tabBar: {
     list: [
@@ -23,6 +24,12 @@ export default defineAppConfig({
       //   pagePath: 'pages/gallery/gallery',
       //   text: '相册',
       // },
+      {
+        iconPath: './icon/article.png',
+        selectedIconPath: './icon/article_selected.png',
+        pagePath: 'pages/articles/articles',
+        text: '文章',
+      },
       {
         iconPath: './icon/about.png',
         selectedIconPath: './icon/about_selected.png',
