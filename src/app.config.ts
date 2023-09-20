@@ -9,6 +9,7 @@ export default defineAppConfig({
     'pages/uploadImage/uploadImage',
     'pages/imageAdmin/imageAdmin',
     'pages/articles/articles',
+    'pages/article/article',
   ],
   tabBar: {
     list: [

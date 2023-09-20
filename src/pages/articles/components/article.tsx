@@ -1,10 +1,15 @@
 import { Image, Text, View } from '@tarojs/components';
+import { navigateTo } from '@tarojs/taro';
 import style from './article.module.css';
 import React from 'react';
 
 function Article(props: Article) {
+  const jumpToArticlePage = () => {
+    navigateTo({ url: `../article/article?link=${props.link}` });
+  };
+
   return (
-    <View className={style.articleCard}>
+    <View className={style.articleCard} onClick={jumpToArticlePage}>
       <Image
         src={props.image}
         mode="widthFix"
