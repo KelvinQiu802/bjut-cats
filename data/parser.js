@@ -4,7 +4,8 @@ const Papa = require('papaparse');
 const fs = require('fs');
 const process = require('process');
 
-const API_HOST = 'http://localhost:7070';
+// const API_HOST = 'http://localhost:7070';
+const API_HOST = 'https://animalwatch.codingkelvin.fun';
 
 // Read File
 const dirPath = process.cwd();
