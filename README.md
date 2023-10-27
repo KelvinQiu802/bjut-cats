@@ -28,6 +28,15 @@ $ pnpm run build:weapp
 
 - Use Wechat Devtools to deploy the mini program.
 
+### Plan for 2.0
+
+- [ ] Redesign UI/UX
+- [ ] Implement an Image Slider (support multiple images for each cat)
+- [ ] Add an Admin Management System (Allow user to edit data without accessing the database)
+- [ ] Create an Image Board (allow users to upload cat images)
+- [ ] Refactor the Backend with Flask in Python 3
+- [ ] Record feedings (upload an image for each checkpoint)
+
 ## Thanks
 
 The conceptualization of this project was stimulated by the innovative work of the [Stray Cats Caring Association at Peking University](https://github.com/SCCAPKU). In addition, certain elements of the UI design and features were influenced by their [mini program](https://github.com/SCCAPKU/miniprogram).
