@@ -4,8 +4,6 @@ import { View } from '@tarojs/components';
 import {
   useLoad,
   navigateTo,
-  request,
-  showToast,
   usePullDownRefresh,
   stopPullDownRefresh,
   useShareAppMessage,
@@ -15,15 +13,14 @@ import style from './index.module.css';
 import CatLink from './components/CatLink';
 import CampusForm from './components/CampusForm';
 import Search from './components/Search';
-import { setGlobal } from '../../../utils/globalData';
-import { API_HOST } from '../../../utils/db';
+import { useCats } from '../../hooks/useCats';
 
 export default function Index() {
   const [cats, setCats] = useState<Cat[]>([]);
   // 0: 在校 1:毕业 2:休学 3:喵星
   const [state, setState] = useState(0);
   const [campus, setCampus] = useState<Campus>('本部');
-  const [allCats, setAllCats] = useState<Cat[]>([]);
+  const [allCats, updateCats] = useCats() as [Cat[], () => void];
 
   useShareAppMessage(() => {
     return {
@@ -40,41 +37,12 @@ export default function Index() {
   });
 
   useLoad(() => {
-    console.log('Index Page loaded.');
-    request({
-      url: `${API_HOST}/api/cats`,
-      method: 'GET',
-      success: (res) => {
-        setAllCats(res.data);
-        setGlobal('allCats', res.data);
-      },
-      fail: (res) => {
-        showToast({
-          title: res.errMsg,
-          icon: 'error',
-        });
-      },
-    });
+    updateCats();
   });
 
   usePullDownRefresh(() => {
-    request({
-      url: `${API_HOST}/api/cats`,
-      method: 'GET',
-      success: (res) => {
-        setAllCats(res.data);
-        setGlobal('allCats', res.data);
-      },
-      fail: (res) => {
-        showToast({
-          title: res.errMsg,
-          icon: 'error',
-        });
-      },
-      complete: () => {
-        stopPullDownRefresh();
-      },
-    });
+    updateCats();
+    stopPullDownRefresh();
   });
 
   useEffect(() => {
