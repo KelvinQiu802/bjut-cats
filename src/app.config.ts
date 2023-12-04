@@ -19,12 +19,12 @@ export default defineAppConfig({
         pagePath: 'pages/index/index',
         text: '图鉴',
       },
-      // {
-      //   iconPath: './icon/gallery.png',
-      //   selectedIconPath: './icon/gallery_selected.png',
-      //   pagePath: 'pages/gallery/gallery',
-      //   text: '相册',
-      // },
+      {
+        iconPath: './icon/gallery.png',
+        selectedIconPath: './icon/gallery_selected.png',
+        pagePath: 'pages/gallery/gallery',
+        text: '相册',
+      },
       {
         iconPath: './icon/article.png',
         selectedIconPath: './icon/article_selected.png',

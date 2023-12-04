@@ -18,7 +18,9 @@ import ImageItem from './components/ImageItem';
 function Gallery() {
   const [images, setImages] = useState<Image[]>([]);
   // 记录用户点赞过的图片url
-  const [likes, setLikes] = useState<string[]>([]);
+  const [likes, setLikes] = useState<ImageLike[]>([]);
+
+  const openId: string = getStorageSync('openId');
 
   async function refreshImages() {
     // 图片排列顺序再想想
@@ -39,12 +41,11 @@ function Gallery() {
   }
 
   async function refreshLike() {
-    const openId: string = getStorageSync('openId');
     const { data } = (await requestAwait(
       'GET',
-      `${API_HOST}/api/likes?by=openId&value=${openId}`
+      `${API_HOST}/api/imageLikes`
     )) as any;
-    setLikes(data.map((like) => like.imageUrl));
+    setLikes(data);
   }
 
   useDidShow(() => {
@@ -68,7 +69,6 @@ function Gallery() {
 
   const handleFabClick = async () => {
     // 从localStorage读openId，来判断是否已经登陆
-    let openId: string = getStorageSync('openId');
     if (openId == '') {
       // 未登录或注册
       signUp(() => {
@@ -89,7 +89,10 @@ function Gallery() {
             <ImageItem
               image={image}
               key={image.imageUrl}
-              isLike={likes.includes(image.imageUrl)}
+              isLike={likes
+                .filter((like) => like.openId == openId)
+                .map((like) => like.imageUrl)
+                .includes(image.imageUrl)}
             />
           ))}
         </GridView>

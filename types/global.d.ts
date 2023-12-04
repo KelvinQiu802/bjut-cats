@@ -53,6 +53,12 @@ interface Image {
   state: ImageState;
 }
 
+interface ImageLike {
+  openId: string;
+  imageUrl: string;
+  timee: Date;
+}
+
 interface Article {
   title: string;
   subTitle: string;

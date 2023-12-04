@@ -31,8 +31,8 @@ function ImageItem({ image, isLike }: Props) {
       return;
     }
     // 已登陆
-    requestAwait('POST', `${API_HOST}/api/likes`, {
-      openId: image.openId,
+    requestAwait('POST', `${API_HOST}/api/imageLikes`, {
+      openId: openId,
       imageUrl: image.imageUrl,
     });
     setLike(true);
